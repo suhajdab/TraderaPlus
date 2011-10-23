@@ -134,14 +134,17 @@ input[type="button"] {
 
 
 /*	BLOCKED ITEMS	*/
-.traderaExtender-fadeblocked .traderaExtender-blocked {
+.traderaExtender-fadeblocked .traderaExtender-blockedItem,
+.traderaExtender-fadeblocked .traderaExtender-blockedUser {
 	opacity: 0.25;
 }
 
-.traderaExtender-fadeblocked .traderaExtender-blocked:hover {
+.traderaExtender-fadeblocked .traderaExtender-blockedItem:hover,
+.traderaExtender-fadeblocked .traderaExtender-blockedUser:hover  {
 	opacity: 0.75;
 }
 
-.traderaExtender-hideblocked .traderaExtender-blocked {
+.traderaExtender-hideblocked .traderaExtender-blockedItem,
+.traderaExtender-hideblocked .traderaExtender-blockedUser {
 	display: none;
 }

@@ -1,12 +1,11 @@
-﻿// TODO: growl like notification to user
-
-( function ( d, undefined ) {
+﻿( function ( d, undefined ) {
 	var legends = d.querySelectorAll( 'legend' ),
 		state, prev,
 		data = JSON.parse( localStorage.getItem('traderaExpander-data') ) || {};
 		
 	var prefix = 'traderaExtender-',
-		blockedClass = 'blocked';
+		blockedUserClass = 'blockedUser',
+		blockedItemClass = 'blockedItem';
 	
 	function log( msg ) {
 		if ( typeof msg == 'object' ) {
@@ -27,8 +26,20 @@
 		log(state);
 	}
 	
+	function saveData () {
+		localStorage.setItem( prefix + 'data', JSON.stringify( data ) );
+		log(data)
+	}
+	
+	function loadData() {
+		data = JSON.parse( localStorage.getItem( prefix + 'data') ) || { blockedItems:[], blockedUsers:[], notes:[] };
+		log( data );
+	}
+	
 	function init() {
 		loadState();
+		loadData();
+		renderBlockedItems();
 		extend();
 		log( 'inited' );
 	}
@@ -44,13 +55,7 @@
 	
 	function handleDropdownClick( e ) {
 		if ( e.target.nodeName == 'A' ) {
-			var notification = webkitNotifications.createNotification(
-			  'icon.png',  // icon url - can be relative
-			  'e.target.dataset.fn',  // notification title
-			  e.target.dataset.fn  // notification body text
-			);
-			
-			notification.show();
+	
 			switch(e.target.dataset.fn){
 				case 'addNote':
 					addNote( this );
@@ -114,30 +119,83 @@
 	}
 	
 	function addBlockedItem( el ) {
-		var parent = parentByClass( el, 'Box-F');
-			addClass( parent, prefix + blockedClass );
+		var parent = parentByClass( el, 'Box-F'),
+			a = parent.querySelector( '.ObjectHeadline a'),
+			url = a.getAttribute( 'href' ),
+			title = a.innerText,
+			src = parent.querySelector( '.imageHolder img' ).src;
+		data.blockedItems.push({
+			src: src,
+			title: title,
+			url: url
+		});
+		renderBlockedItems();
+		saveData();
 	}
 	
-	function removeBlockedItem( id ) {
-		
+	function removeBlockedItem( url ) {
+		for ( var i = 0, b; b = data.blockedItems[ i ]; i++ ) {
+			if ( b.url == url ) {
+				data.blockedItems.splice( i, 1 );
+				break;
+			}
+		}
+		renderBlockedItems();
 	}
 	
 	function renderBlockedItems() {
-		var blocked = d.querySelectorAll( '.' + prefix + blockedClass );
-		for ( var i = 0, l = blocked; i < l; i++ ) removeClass( blocked[ i ], prefix + blockedClass );
-		for ( var i = 0, l = data.blocked.length; i < l; i++ ) {
-			var el = d.querySelector( '.objectList .Box-F.listStyle a[href="' + data.blocked[ i ].url+ '"]' ),
-				parent = parentByClass( el, 'Box-F');
-			addClass( parent, prefix + blockedClass );
+		var oldBlocked = d.querySelectorAll( '.' + prefix + blockedItemClass );
+		for ( var i = 0, l = oldBlocked; i < l; i++ ) removeClass( oldBlocked[ i ], prefix + blockedItemClass );
+		for ( var i = 0, b; b = data.blockedItems[ i ]; i++ ) {
+			var el = d.querySelector( '.objectList .Box-F.listStyle a[href="' + b.url+ '"]' );
+			if ( el ) {
+				var parent = parentByClass( el, 'Box-F');
+				addClass( parent, prefix + blockedItemClass );
+			}
 		}
 	}
-	data.blocked = [{
-		url: '/Vackraste-skapet-saa-fint-shabby-chic-lantligt-hylla--auktion_341130_141017621',
-		thumbnail: 'http://listthumb.tradera.com/782/130662782_1.jpg',
-		title: 'Vackraste skåpet, såå fint!!!/shabby chic/lantligt/hylla/'
-	}];
 	
+	function isBlocked( el ) {
+		return parentByClass( el, prefix + blockedItemClass ) && true;
+	}
+
+	function addBlockedUsers( el ) {
+		var parent = parentByClass( el, 'Box-F'),
+			a = parent.querySelector( '.ObjectHeadline a'),
+			url = a.getAttribute( 'href' ),
+			title = a.innerText,
+			src = parent.querySelector( '.imageHolder img' ).src;
+		data.blockedUsers.push({
+			src: src,
+			title: title,
+			url: url
+		});
+		renderBlockedItems();
+	}
 	
+	function removeBlockedUsers( url ) {
+		for ( var i = 0, b; b = data.blockedUsers[ i ]; i++ ) {
+			if ( b.url == url ) {
+				data.blockedUsers.splice( i, 1 );
+				break;
+			}
+		}
+		renderBlockedItems();
+	}
+	
+	function renderBlockedUsers() {
+		var oldBlocked = d.querySelectorAll( '.' + prefix + blockedUserClass );
+		for ( var i = 0, l = oldBlocked; i < l; i++ ) removeClass( oldBlocked[ i ], prefix + blockedUserClass );
+		for ( var i = 0, b; b = data.blockedUsers; i++ ) {
+			var el = d.querySelector( '.objectList .Box-F.listStyle a[href="' + b.url+ '"]' ),
+				parent = parentByClass( el, 'Box-F');
+			addClass( parent, prefix + blockedUserClass );
+		}
+	}
+	
+
+
+
 	function addNote( el ) {
 		log( 'addNote' );
 	}

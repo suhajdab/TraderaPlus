@@ -1,11 +1,11 @@
 {
-	"name": "Tradera extender",
-	"version": "1.0",
-	"description": "This extention adds extra features to the tradera website. It allows you to block users from appearing in search results. Also lets you save search queries, so you can quickly access them again.",
+	"name": "Tradera+",
+	"version": "0.7",
+	"description": "This extention adds extra features to the tradera website. It allows you to block items, users from appearing in search results, allows you to add personal notes to items.",
 	"content_scripts": [{
 		"matches": ["http://www.tradera.com/*"],
-		"css": ["css/traderaExtender.css"],
-		"js": ["js/google.analytics.js", "js/Object.extendWith.js", "js/addClass.js", "js/traderaExtender.js"],
+		"css": ["css/traderaPlus.css"],
+		"js": ["js/google.analytics.js", "js/utils.js", "js/traderaPlus.js"],
 		"run_at": "document_end"
 	}],
 	"permissions": [
