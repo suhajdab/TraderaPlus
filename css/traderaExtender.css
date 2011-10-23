@@ -1,0 +1,147 @@
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, san-serif;
+}
+
+fieldset {
+	height: 8px;
+	padding: 10px 8px 4px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	overflow: hidden;
+	-webkit-transition: height 250ms ease-in-out;
+}
+
+legend {
+	color: #999;
+	cursor: pointer;
+	font-size: 80%;
+}
+
+legend::after {
+	content: "+";
+	padding-left: 8px;
+}
+
+legend:hover::after {
+	color: #000;
+}
+
+fieldset.expanded {
+	height: 400px;
+}
+
+fieldset.expanded legend::after {
+	content: "-";
+}
+
+#users span {
+	float: left;
+	padding: 3px 6px;
+	background: #ddd;
+	border: #999;
+	border-radius: 3px;
+}
+/*
+input[type="checkbox"] {
+	background: #c00;
+	width: 16px;
+	height: 16px;
+	-webkit-appearance: none;
+}
+
+input[type="checkbox"][checked] {
+	background: #0c0;
+}
+*/
+input[type="button"] {
+	height: 24px;
+	width: 24px;
+	padding: 0;
+	background: #c00;
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	font-weight: bold
+	line-height: 24px;
+}
+
+.objectList .Box-F.listStyle {
+	position: relative;
+}
+
+.traderaExtender-dropdown {
+	position: absolute;
+	top: 0;
+	right: 20px;
+	width: 15px;
+	height: 12px;
+	background-image: -webkit-linear-gradient(#fee56e, #ffdc42);
+	border: 1px solid #ccc;
+	border-top: none;
+	border-radius: 0 0 3px 3px;
+	cursor: pointer;
+	opacity: 0.25;
+	-webkit-transition: opacity 150ms linear;
+}
+
+.traderaExtender-dropdown::after {
+	content: '';
+	position: absolute;
+	bottom: 4px;
+	left: 3px;
+	width: 0; 
+	height: 0;
+	border-top: 4px solid #fff;
+	border-left: 4px solid transparent; 
+	border-right: 4px solid transparent;
+}
+
+.Box-F.listStyle:hover .traderaExtender-dropdown {
+	opacity: 1;
+}
+
+.traderaExtender-dropdown a {
+	display: none;
+	color: #666;
+}
+
+.traderaExtender-dropdown a:hover {
+	background: #fff;
+	color: #333;
+}
+
+.traderaExtender-dropdown[data-open="true"] {
+	height: 75px;
+	width: 113px;
+	padding: 2px 0 12px;
+	box-shadow: 0 3px 2px rgba(0,0,0,0.2);
+	opacity: 1;
+	-webkit-transition: height 150ms linear;
+}
+
+.traderaExtender-dropdown[data-open="true"]::after {
+	left: 51px;
+	border-top: none;
+	border-bottom: 4px solid #fff;
+	border-left: 4px solid transparent; 
+	border-right: 4px solid transparent; 
+}
+
+.traderaExtender-dropdown[data-open="true"] a {
+	display: block;
+	padding: 2px 4px;
+}
+
+
+/*	BLOCKED ITEMS	*/
+.traderaExtender-fadeblocked .traderaExtender-blocked {
+	opacity: 0.25;
+}
+
+.traderaExtender-fadeblocked .traderaExtender-blocked:hover {
+	opacity: 0.75;
+}
+
+.traderaExtender-hideblocked .traderaExtender-blocked {
+	display: none;
+}
