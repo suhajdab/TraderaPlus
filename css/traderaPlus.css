@@ -1,8 +1,9 @@
-body {
+#traderaPlus-fixedPanel {
+	position: fixed;
 	font-family: "Helvetica Neue", Helvetica, Arial, san-serif;
 }
 
-fieldset {
+#traderaPlus-fixedPanel fieldset {
 	height: 8px;
 	padding: 10px 8px 4px;
 	border: 1px solid #ddd;
@@ -11,30 +12,30 @@ fieldset {
 	-webkit-transition: height 250ms ease-in-out;
 }
 
-legend {
+#traderaPlus-fixedPanel legend {
 	color: #999;
 	cursor: pointer;
 	font-size: 80%;
 }
 
-legend::after {
+#traderaPlus-fixedPanel legend::after {
 	content: "+";
 	padding-left: 8px;
 }
 
-legend:hover::after {
+#traderaPlus-fixedPanel legend:hover::after {
 	color: #000;
 }
 
-fieldset.expanded {
+#traderaPlus-fixedPanel fieldset.expanded {
 	height: 400px;
 }
 
-fieldset.expanded legend::after {
+#traderaPlus-fixedPanel fieldset.expanded legend::after {
 	content: "-";
 }
 
-#users span {
+#traderaPlus-fixedPanel #users span {
 	float: left;
 	padding: 3px 6px;
 	background: #ddd;
@@ -42,18 +43,20 @@ fieldset.expanded legend::after {
 	border-radius: 3px;
 }
 /*
-input[type="checkbox"] {
+#traderaPlus-fixedPanel input[type="checkbox"] {
 	background: #c00;
 	width: 16px;
 	height: 16px;
 	-webkit-appearance: none;
 }
 
-input[type="checkbox"][checked] {
+#traderaPlus-fixedPanel input[type="checkbox"][checked] {
 	background: #0c0;
 }
 */
-input[type="button"] {
+
+/*	Plus UI in page	*/
+#traderaPlus-fixedPanel button {
 	height: 24px;
 	width: 24px;
 	padding: 0;
@@ -69,7 +72,7 @@ input[type="button"] {
 	position: relative;
 }
 
-.traderaExtender-dropdown {
+.traderaPlus-dropdown {
 	position: absolute;
 	top: 0;
 	right: 20px;
@@ -84,7 +87,7 @@ input[type="button"] {
 	-webkit-transition: opacity 150ms linear;
 }
 
-.traderaExtender-dropdown::after {
+.traderaPlus-dropdown::after {
 	content: '';
 	position: absolute;
 	bottom: 4px;
@@ -96,21 +99,21 @@ input[type="button"] {
 	border-right: 4px solid transparent;
 }
 
-.Box-F.listStyle:hover .traderaExtender-dropdown {
+.Box-F.listStyle:hover .traderaPlus-dropdown {
 	opacity: 1;
 }
 
-.traderaExtender-dropdown a {
+.traderaPlus-dropdown a {
 	display: none;
 	color: #666;
 }
 
-.traderaExtender-dropdown a:hover {
+.traderaPlus-dropdown a:hover {
 	background: #fff;
 	color: #333;
 }
 
-.traderaExtender-dropdown[data-open="true"] {
+.traderaPlus-dropdown[data-open="true"] {
 	height: 75px;
 	width: 113px;
 	padding: 2px 0 12px;
@@ -119,7 +122,7 @@ input[type="button"] {
 	-webkit-transition: height 150ms linear;
 }
 
-.traderaExtender-dropdown[data-open="true"]::after {
+.traderaPlus-dropdown[data-open="true"]::after {
 	left: 51px;
 	border-top: none;
 	border-bottom: 4px solid #fff;
@@ -127,24 +130,24 @@ input[type="button"] {
 	border-right: 4px solid transparent; 
 }
 
-.traderaExtender-dropdown[data-open="true"] a {
+.traderaPlus-dropdown[data-open="true"] a {
 	display: block;
 	padding: 2px 4px;
 }
 
 
 /*	BLOCKED ITEMS	*/
-.traderaExtender-fadeblocked .traderaExtender-blockedItem,
-.traderaExtender-fadeblocked .traderaExtender-blockedUser {
+.traderaPlus-fadeblocked .traderaPlus-blockedItem,
+.traderaPlus-fadeblocked .traderaPlus-blockedUser {
 	opacity: 0.25;
 }
 
-.traderaExtender-fadeblocked .traderaExtender-blockedItem:hover,
-.traderaExtender-fadeblocked .traderaExtender-blockedUser:hover  {
+.traderaPlus-fadeblocked .traderaPlus-blockedItem:hover,
+.traderaPlus-fadeblocked .traderaPlus-blockedUser:hover  {
 	opacity: 0.75;
 }
 
-.traderaExtender-hideblocked .traderaExtender-blockedItem,
-.traderaExtender-hideblocked .traderaExtender-blockedUser {
+.traderaPlus-hideblocked .traderaPlus-blockedItem,
+.traderaPlus-hideblocked .traderaPlus-blockedUser {
 	display: none;
 }

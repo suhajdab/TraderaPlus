@@ -5,42 +5,49 @@
 		</style>
 	</head>
 	<body>
-		<input type="checkbox">
-		<fieldset id="users">
-			<legend>Blocked users</legend>
-			<span>
-				AsianHome
-				<input type="checkbox" checked title="toggle blocking for user">
-				<input type="button" value="X" title="remove from list">
-			</span>
-		</fieldset>
-		<fieldset id="queries">
-			<legend>Seach querys</legend>
-			<div>
-				<a href="http://www.tradera.com/listing.mvc/itemlisting?header=true&search=h%C3%B6gtalare">&quot;högtalare&quot; - Relevans</a>
-				<input type="button" value="X"/>
-			</div>
-		</fieldset>
-		<fieldset id="notes">
-			<legend>Auction notes</legend>
-			<table>
-				<thead>
-					<tr>
-						<td>Auction</td>
-						<td>Note</td>
-						<td></td>
-					</td>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Big white rabbit</td>
-						<td>Very cute & furry</td>
-						<td><input type="button" value="X"/></td>
-					</tr>
-				</tbody>
-			</table>
-			</div>
-		</fieldset>
+		<aside id="traderaPlus-fixedPanel">
+			<nav>
+				<a class="items"></a>
+				<a class="users"></a>
+				<a class="notes"></a>
+			</nav>
+			<input type="checkbox">
+			<fieldset id="traderaPlus-users">
+				<legend>Blocked users</legend>
+				<span>
+					AsianHome
+					<input type="checkbox" checked title="toggle blocking for user">
+					<button title="remove from list">X</button>
+				</span>
+			</fieldset>
+			<fieldset id="traderaPlus-queries">
+				<legend>Seach querys</legend>
+				<div>
+					<a href="http://www.tradera.com/listing.mvc/itemlisting?header=true&search=h%C3%B6gtalare">&quot;högtalare&quot; - Relevans</a>
+					<button>X</button>
+				</div>
+			</fieldset>
+			<fieldset id="traderaPlus-notes">
+				<legend>Auction notes</legend>
+				<table>
+					<thead>
+						<tr>
+							<td>Auction</td>
+							<td>Note</td>
+							<td></td>
+						</td>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Big white rabbit</td>
+							<td>Very cute &amp; furry</td>
+							<td><button>x</button></td>
+						</tr>
+					</tbody>
+				</table>
+				</div>
+			</fieldset>
+		</aside>
 		
 		<script src="js/Object.extendWith.js"></script>
 		<script src="js/traderaExtender.js"></script>

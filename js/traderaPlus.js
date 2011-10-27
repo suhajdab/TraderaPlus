@@ -1,18 +1,22 @@
-﻿( function ( d, undefined ) {
-	var legends = d.querySelectorAll( 'legend' ),
-		state, prev,
-		data = JSON.parse( localStorage.getItem('traderaExpander-data') ) || {};
+﻿/*
+	TODO: balloon help like guide to where things are
+		icons for panels on fixed control panel
+*/
+
+
+( function ( d, undefined ) {
+	var legends, state, prev, data;
 		
-	var prefix = 'traderaExtender-',
+	var prefix = 'traderaPlus-',
 		blockedUserClass = 'blockedUser',
 		blockedItemClass = 'blockedItem';
 	
 	function log( msg ) {
 		if ( typeof msg == 'object' ) {
-			console.log( 'Tradera Extender: ');
+			console.log( 'Tradera Plus: ');
 			console.log( msg );
 		}
-		else console.log( 'Tradera Extender: ' + msg );
+		else console.log( 'Tradera Plus: ' + msg );
 	}
 	
 	function saveState () {
@@ -40,11 +44,13 @@
 		loadState();
 		loadData();
 		renderBlockedItems();
+		renderBlockedUsers();
 		extend();
 		log( 'inited' );
 	}
 	
 	function extend() {
+		legends = d.querySelectorAll( 'legend' );
 		addClass( d.querySelector( 'body' ), prefix + state.blockPresentation + 'blocked' );
 		// add markup & classes to page
 		var els = d.querySelectorAll( '.objectList .Box-F.listStyle' );
@@ -87,13 +93,17 @@
 			dropdown = d.createElement( 'div' );
 		dropdown.className = prefix + 'dropdown';
 		dropdown.dataset.fn = 'dropdown';
-		dropdown.innerHTML = '<a data-fn="addNote">Add note</a><a data-fn="addBlockedItem">Block item</a><a data-fn="addBlockedUser">Block user</a><a>Show control panel</a>';
+		dropdown.innerHTML = '<a data-fn="addNote">Add note</a><a data-fn="addBlockedItem">Block item</a><a data-fn="addBlockedUser">Block user</a><a data-fn="">Show control panel</a>';
 		dropdown.addEventListener( 'click', handleDropdownClick, false );
 		el.appendChild( dropdown );
 	}
 	
 	function openPanel() {
 		if ( state.openFieldset >= 0) legends[ state.openFieldset ].parentNode.className = 'expanded';
+	
+	for ( var i = 0, l = legends.length; i < l; i++ ) {
+		legends[ i ].addEventListener( 'click', legendClickHandler, false );
+	}
 	}
 	
 	function legendClickHandler () {
@@ -112,10 +122,6 @@
 			}
 		}
 		saveState();
-	}
-	
-	for ( var i = 0, l = legends.length; i < l; i++ ) {
-		legends[ i ].addEventListener( 'click', legendClickHandler, false );
 	}
 	
 	function addBlockedItem( el ) {
@@ -159,18 +165,17 @@
 		return parentByClass( el, prefix + blockedItemClass ) && true;
 	}
 
-	function addBlockedUsers( el ) {
+	function addBlockedUser( el ) {
 		var parent = parentByClass( el, 'Box-F'),
-			a = parent.querySelector( '.ObjectHeadline a'),
+			a = parent.querySelector( '.seller a'),
 			url = a.getAttribute( 'href' ),
-			title = a.innerText,
-			src = parent.querySelector( '.imageHolder img' ).src;
+			title = a.innerText
 		data.blockedUsers.push({
-			src: src,
 			title: title,
 			url: url
 		});
-		renderBlockedItems();
+		renderBlockedUsers();
+		saveData();
 	}
 	
 	function removeBlockedUsers( url ) {
@@ -186,10 +191,12 @@
 	function renderBlockedUsers() {
 		var oldBlocked = d.querySelectorAll( '.' + prefix + blockedUserClass );
 		for ( var i = 0, l = oldBlocked; i < l; i++ ) removeClass( oldBlocked[ i ], prefix + blockedUserClass );
-		for ( var i = 0, b; b = data.blockedUsers; i++ ) {
-			var el = d.querySelector( '.objectList .Box-F.listStyle a[href="' + b.url+ '"]' ),
+		for ( var i = 0, b; b = data.blockedUsers[ i ]; i++ ) {
+			var els = d.querySelectorAll( '.objectList .Box-F.listStyle a[href="' + b.url+ '"]' );
+			for ( var j = 0, el; el = els[ j ]; j++ ) {
 				parent = parentByClass( el, 'Box-F');
-			addClass( parent, prefix + blockedUserClass );
+				addClass( parent, prefix + blockedUserClass );
+			}
 		}
 	}
 	
@@ -205,5 +212,5 @@
 		blockPresentation: 'fade' // fade or hide
 	}
 	
-	init();
+	if ( d.querySelector( '.Box-F' ) ) init();
 })( document );
