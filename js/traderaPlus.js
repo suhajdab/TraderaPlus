@@ -1,6 +1,9 @@
 ﻿/*
-	TODO: balloon help like guide to where things are
+	TODO: balloon help like guide to where things are when first ran
 		icons for panels on fixed control panel
+		verify that added items, users are not already in list
+		change menu when item blocked, note added
+		place dropdown texts into data attr & use ::after to show state
 */
 
 
@@ -10,6 +13,13 @@
 	var prefix = 'traderaPlus-',
 		blockedUserClass = 'blockedUser',
 		blockedItemClass = 'blockedItem';
+		
+	var templates = {
+		dropdown: '<a data-fn="addNote" data-label="{=addnote}" data-altlabel="{=removenote}"></a>'
+					+ '<a data-fn="addBlockedItem" data-label="{=blockitem}" data-altlabel="{=unblockitem}"></a>'
+					+ '<a data-fn="addBlockedUser" data-label="{=blockuser}" data-altlabel="{=unblockuser}"></a>',
+		note: '<textarea></textarea>'
+	}
 	
 	function log( msg ) {
 		if ( typeof msg == 'object' ) {
@@ -90,10 +100,10 @@
 	
 	function renderDropdown( el ) {
 		var href = el.querySelector( 'a' ).href,
-			dropdown = d.createElement( 'div' );
+			dropdown = d.createElement( 'nav' );
 		dropdown.className = prefix + 'dropdown';
 		dropdown.dataset.fn = 'dropdown';
-		dropdown.innerHTML = '<a data-fn="addNote">Add note</a><a data-fn="addBlockedItem">Block item</a><a data-fn="addBlockedUser">Block user</a><a data-fn="">Show control panel</a>';
+		dropdown.innerHTML = tmpl( templates.dropdown, traderaPlusStrings );
 		dropdown.addEventListener( 'click', handleDropdownClick, false );
 		el.appendChild( dropdown );
 	}
@@ -101,9 +111,9 @@
 	function openPanel() {
 		if ( state.openFieldset >= 0) legends[ state.openFieldset ].parentNode.className = 'expanded';
 	
-	for ( var i = 0, l = legends.length; i < l; i++ ) {
-		legends[ i ].addEventListener( 'click', legendClickHandler, false );
-	}
+		for ( var i = 0, l = legends.length; i < l; i++ ) {
+			legends[ i ].addEventListener( 'click', legendClickHandler, false );
+		}
 	}
 	
 	function legendClickHandler () {
@@ -204,7 +214,21 @@
 
 
 	function addNote( el ) {
-		log( 'addNote' );
+		var parent = parentByClass( el, 'Box-F'),
+			url = a.getAttribute( 'href' ),
+			aside = document.createElement( 'aside' );
+		aside.className = prefix + 'note';
+		aside.innerHTML = tmpl( templates.note, traderaPlusStrings );
+		parent.appendChild( aside );
+		var ta = parent.querySelector( 'textarea' );
+		ta.focus();
+		ta.addEventListener( 'keyup', handleNoteKeyup );
+		
+	}
+	
+	function handleNoteKeyup ( e ) {
+		
+		console.log( this.value );
 	}
 	
 	var defaults = {
