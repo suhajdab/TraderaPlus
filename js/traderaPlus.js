@@ -1,9 +1,10 @@
 ﻿/*
-	TODO: balloon help like guide to where things are when first ran
-		icons for panels on fixed control panel
-		verify that added items, users are not already in list
-		change menu when item blocked, note added
-		place dropdown texts into data attr & use ::after to show state
+	TODO: 
+		-	balloon help like guide to where things are when first ran
+		-	icons for panels on fixed control panel
+		-	verify that added items, sellers are not already in list
+		-	change menu when item blocked, note added
+		-	modify rendering items to searching in js data ( rather than searching for elements in data )
 */
 
 
@@ -11,14 +12,15 @@
 	var legends, state, prev, data;
 		
 	var prefix = 'traderaPlus-',
-		blockedUserClass = 'blockedUser',
+		blockedSellerClass = 'blockedSeller',
 		blockedItemClass = 'blockedItem';
 		
 	var templates = {
 		dropdown: '<a data-fn="addNote" data-label="{=addnote}" data-altlabel="{=removenote}"></a>'
 					+ '<a data-fn="addBlockedItem" data-label="{=blockitem}" data-altlabel="{=unblockitem}"></a>'
-					+ '<a data-fn="addBlockedUser" data-label="{=blockuser}" data-altlabel="{=unblockuser}"></a>',
-		note: '<textarea></textarea>'
+					+ '<a data-fn="addBlockedSeller" data-label="{=blockseller}" data-altlabel="{=unblockseller}"></a>',
+		note: '<textarea></textarea>',
+		guide: '<aside class="' + prefix + 'guide">{=guideText}</aside>'
 	}
 	
 	function log( msg ) {
@@ -46,7 +48,7 @@
 	}
 	
 	function loadData() {
-		data = JSON.parse( localStorage.getItem( prefix + 'data') ) || { blockedItems:[], blockedUsers:[], notes:[] };
+		data = JSON.parse( localStorage.getItem( prefix + 'data') ) || { blockedItems:[], blockedSellers:[], notes:{} };
 		log( data );
 	}
 	
@@ -54,7 +56,7 @@
 		loadState();
 		loadData();
 		renderBlockedItems();
-		renderBlockedUsers();
+		renderBlockedSellers();
 		extend();
 		log( 'inited' );
 	}
@@ -79,8 +81,8 @@
 				case 'addBlockedItem':
 					addBlockedItem( this );
 					break;
-				case 'addBlockedUser':
-					addBlockedUser( this );
+				case 'addBlockedSeller':
+					addBlockedSeller( this );
 					break;
 			}
 		} else {
@@ -92,7 +94,7 @@
 		}
 		_gaq.push(['_trackEvent', e.target.dataset.fn, 'clicked']);
 	}
-	//	TODO: close on outside or other dropdown click
+	
 	function handleBodyClick() {
 		if ( prev ) prev.dataset.open = '';
 		d.body.removeEventListener( 'click', handleBodyClick );
@@ -175,37 +177,37 @@
 		return parentByClass( el, prefix + blockedItemClass ) && true;
 	}
 
-	function addBlockedUser( el ) {
+	function addBlockedSeller( el ) {
 		var parent = parentByClass( el, 'Box-F'),
 			a = parent.querySelector( '.seller a'),
 			url = a.getAttribute( 'href' ),
 			title = a.innerText
-		data.blockedUsers.push({
+		data.blockedSellers.push({
 			title: title,
 			url: url
 		});
-		renderBlockedUsers();
+		renderBlockedSellers();
 		saveData();
 	}
 	
-	function removeBlockedUsers( url ) {
-		for ( var i = 0, b; b = data.blockedUsers[ i ]; i++ ) {
+	function removeBlockedSellers( url ) {
+		for ( var i = 0, b; b = data.blockedSellers[ i ]; i++ ) {
 			if ( b.url == url ) {
-				data.blockedUsers.splice( i, 1 );
+				data.blockedSellers.splice( i, 1 );
 				break;
 			}
 		}
 		renderBlockedItems();
 	}
 	
-	function renderBlockedUsers() {
-		var oldBlocked = d.querySelectorAll( '.' + prefix + blockedUserClass );
-		for ( var i = 0, l = oldBlocked; i < l; i++ ) removeClass( oldBlocked[ i ], prefix + blockedUserClass );
-		for ( var i = 0, b; b = data.blockedUsers[ i ]; i++ ) {
+	function renderBlockedSellers() {
+		var oldBlocked = d.querySelectorAll( '.' + prefix + blockedSellerClass );
+		for ( var i = 0, l = oldBlocked; i < l; i++ ) removeClass( oldBlocked[ i ], prefix + blockedSellerClass );
+		for ( var i = 0, b; b = data.blockedSellers[ i ]; i++ ) {
 			var els = d.querySelectorAll( '.objectList .Box-F.listStyle a[href="' + b.url+ '"]' );
 			for ( var j = 0, el; el = els[ j ]; j++ ) {
 				parent = parentByClass( el, 'Box-F');
-				addClass( parent, prefix + blockedUserClass );
+				addClass( parent, prefix + blockedSellerClass );
 			}
 		}
 	}
@@ -221,14 +223,14 @@
 		aside.innerHTML = tmpl( templates.note, traderaPlusStrings );
 		parent.appendChild( aside );
 		var ta = parent.querySelector( 'textarea' );
+		ta.url = url;
 		ta.focus();
 		ta.addEventListener( 'keyup', handleNoteKeyup );
-		
 	}
 	
 	function handleNoteKeyup ( e ) {
-		
-		console.log( this.value );
+		data.notes[ this.url ] = this.value;
+		saveData();
 	}
 	
 	var defaults = {

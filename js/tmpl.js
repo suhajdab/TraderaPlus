@@ -3,7 +3,7 @@
 //
 // based on John Resig - http://ejohn.org/ - MIT Licensed
 // but modified to using my favorite: {}
-//  ex: {=user}
+//  ex: {=seller}
 // 
 // <script type="text/html" id="item_tmpl">
 //   <div id="<%=id%>" class="<%=(i % 2 == 1 ? " even" : "")%>">
@@ -11,7 +11,7 @@
 //       <img class="righted" src="<%=profile_image_url%>"/>
 //     </div>
 //     <div class="grid_6 omega contents">
-//       <p><b><a href="/<%=from_user%>"><%=from_user%></a>:</b> <%=text%></p>
+//       <p><b><a href="/<%=from_seller%>"><%=from_seller%></a>:</b> <%=text%></p>
 //     </div>
 //   </div>
 // </script>
@@ -49,7 +49,7 @@
           .split("\r").join("\\'")
       + "');}return p.join('');");
     
-    // Provide some basic currying to the user
+    // Provide some basic currying to the seller
     return data ? fn( data ) : fn;
   };
 })();

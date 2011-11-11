@@ -1,7 +1,7 @@
 {
 	"name": "Tradera+",
 	"version": "0.7",
-	"description": "This extention adds extra features to the tradera website. It allows you to block items, users from appearing in search results, allows you to add personal notes to items.",
+	"description": "This extention adds extra features to the tradera website. It allows you to block items, sellers from appearing in search results, allows you to add personal notes to items.",
 	"content_scripts": [{
 		"matches": ["http://www.tradera.com/*"],
 		"css": ["css/traderaPlus.css"],
