@@ -35,7 +35,7 @@
 	content: "-";
 }
 
-#traderaPlus-fixedPanel #users span {
+#traderaPlus-fixedPanel #sellers span {
 	float: left;
 	padding: 3px 6px;
 	background: #ddd;
@@ -110,16 +110,16 @@
 }
 
 .traderaPlus-dropdown a:after {
-	content: attr("data-label");
+	content: attr(data-label);
 }
 
 .traderaPlus-blockedItem .traderaPlus-dropdown a[data-fn="addBlockedItem"]:after {
-	content: attr("data-altlabel");
+	content: attr(data-altlabel);
 }
 
 
-.traderaPlus-blockedUser .traderaPlus-dropdown a[data-fn="addBlockedUser"]:after {
-	content: attr("data-altlabel");
+.traderaPlus-blockedSeller .traderaPlus-dropdown a[data-fn="addBlockedSeller"]:after {
+	content: attr(data-altlabel);
 }
 
 .traderaPlus-dropdown a:hover {
@@ -170,16 +170,16 @@
 
 /*	BLOCKED ITEMS	*/
 .traderaPlus-fadeblocked .traderaPlus-blockedItem,
-.traderaPlus-fadeblocked .traderaPlus-blockedUser {
+.traderaPlus-fadeblocked .traderaPlus-blockedSeller {
 	opacity: 0.25;
 }
 
 .traderaPlus-fadeblocked .traderaPlus-blockedItem:hover,
-.traderaPlus-fadeblocked .traderaPlus-blockedUser:hover  {
+.traderaPlus-fadeblocked .traderaPlus-blockedSeller:hover  {
 	opacity: 0.75;
 }
 
 .traderaPlus-hideblocked .traderaPlus-blockedItem,
-.traderaPlus-hideblocked .traderaPlus-blockedUser {
+.traderaPlus-hideblocked .traderaPlus-blockedSeller {
 	display: none;
 }
