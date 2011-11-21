@@ -5,7 +5,13 @@
 	"content_scripts": [{
 		"matches": ["http://www.tradera.com/*"],
 		"css": ["css/traderaPlus.css"],
-		"js": ["js/google.analytics.js", "js/utils.js", "js/tmpl.js", "js/en.js", "js/traderaPlus.js"],
+		"js": [
+			"js/google.analytics.js", 
+			"js/utils.js", 
+			"js/tmpl.js", 
+			"js/en.js", 
+			"js/traderaPlus.js"
+		],
 		"run_at": "document_end"
 	}],
 	"permissions": [
