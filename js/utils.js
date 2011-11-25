@@ -32,30 +32,10 @@ function addClass( el, value ) {
 }
 
 function removeClass( el, value ) {
-	var classNames, i, l, elem, className, c, cl;
-
-	if ( (value && typeof value === "string") || value === undefined ) {
-		classNames = (value || "").split( rspace );
-
-		for ( i = 0, l = this.length; i < l; i++ ) {
-			elem = this[ i ];
-
-			if ( elem.nodeType === 1 && elem.className ) {
-				if ( value ) {
-					className = (" " + elem.className + " ").replace( rclass, " " );
-					for ( c = 0, cl = classNames.length; c < cl; c++ ) {
-						className = className.replace(" " + classNames[ c ] + " ", " ");
-					}
-					elem.className = jQuery.trim( className );
-
-				} else {
-					elem.className = "";
-				}
-			}
-		}
-	}
-
-	return this;
+	//	stripped down version of jquery's removeClass
+	var className = ( " " + el.className + " " );
+	className = className.replace( " " + value + " ", " " );
+	el.className = className.trim();
 }
 
 function parentByClass( elem, className ) {
