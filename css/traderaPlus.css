@@ -117,8 +117,11 @@
 	content: attr(data-altlabel);
 }
 
-
 .traderaPlus-blockedSeller .traderaPlus-dropdown a[data-fn="addBlockedSeller"]:after {
+	content: attr(data-altlabel);
+}
+
+.traderaPlus-hasNote .traderaPlus-dropdown a[data-controller="notes"]:after {
 	content: attr(data-altlabel);
 }
 

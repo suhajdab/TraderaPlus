@@ -1,12 +1,17 @@
+/*
+ 	TODO:
+		- class change on item to show alternate menu label
+ */
 traderaPlus.notes = ( function() {
-	var data, prefix;
+	var data, prefix, hasNoteClass;
 	
 	var template = '<textarea placeholder="{=notePlaceholder}"></textarea>',
 		linkSelector = '.ObjectHeadline a',
 		dropdownSelector = 'a[data-controller="notes"]';
 	
 	function init () {
-		prefix = traderaPlus.prefix,
+		prefix = traderaPlus.prefix;
+		hasNoteClass = prefix + 'hasNote';
 		itemSelector = traderaPlus.itemSelector;
 		
 		load();
@@ -27,23 +32,23 @@ traderaPlus.notes = ( function() {
 	}
 	
 	
-	function Note ( cont ){
-		var that = this;
+	function Note ( cont, autofocus ){
 		this.cont = cont;
+		this.autofocus = autofocus || false;
 		this.init();
 	}
 	
 	Note.prototype = {
 		handleEvent: function( e ) {
-			var that = this;
 			switch( e.type ) {
-				case 'keyup': that.keyupHandler( e ); break;
+				case 'keyup': this.keyupHandler( e ); break;
 			}
 		},
 		
 		init: function() {
 			this.url = getItemUrl( this.cont );
 			this.build();
+			this.attach();
 		},
 		
 		build: function () {
@@ -55,20 +60,21 @@ traderaPlus.notes = ( function() {
 			
 			var ta = this.cont.querySelector( 'textarea' );
 			if ( data[ this.url ] ) ta.value = data[ this.url ];
-			ta.focus();
+			if ( this.autofocus ) ta.focus();
 			ta.addEventListener( 'keyup', that, false );
 			this.ta = ta;
 		},
 		
 		attach: function () {
-			this.dropdown = this.cont.querySelector( dropdownSelector );
-			this.dropdown.note = this;
+			addClass( this.cont, hasNoteClass );
 		},
 		
 		delete: function () {
-			this.ta.removeEventListener( 'keyup', that );
+			this.ta.removeEventListener( 'keyup', this );
+			this.cont.removeChild( this.ta.parentNode );
+			removeClass( this.cont, hasNoteClass );
 			delete data[ this.url ];
-			delete this.dropdown;
+			save();
 		},
 		
 		keyupHandler: function () {
@@ -86,15 +92,15 @@ traderaPlus.notes = ( function() {
 		var els = document.querySelectorAll( itemSelector );
 		for ( var i = 0, el; el = els[ i ]; i++ ) {
 			if ( data[ getItemUrl( el ) ] ) {
-				new Note( el );
+				el.note = new Note( el );
 			}
 		}
 	}
 	
 	function handleDropdownClick( e ) {
 		var cont = parentByClass( this, 'Box-F' );
-		if ( cont.note ) cont.note.delete();
-		else new Note( cont );
+		if ( cont.className.match( hasNoteClass ) ) cont.note.delete();
+		else cont.note = new Note( cont, true );
 	}
 	
 	return {
