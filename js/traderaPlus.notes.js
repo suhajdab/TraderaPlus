@@ -3,15 +3,15 @@
 		- class change on item to show alternate menu label
  */
 traderaPlus.notes = ( function() {
-	var data, prefix, hasNoteClass;
+	var data, prefix;
 	
 	var template = '<textarea placeholder="{=notePlaceholder}"></textarea>',
 		linkSelector = '.ObjectHeadline a',
+		hasNoteClass = 'hasNote',
 		dropdownSelector = 'a[data-controller="notes"]';
 	
 	function init () {
 		prefix = traderaPlus.prefix;
-		hasNoteClass = prefix + 'hasNote';
 		itemSelector = traderaPlus.itemSelector;
 		
 		load();
@@ -66,13 +66,13 @@ traderaPlus.notes = ( function() {
 		},
 		
 		attach: function () {
-			addClass( this.cont, hasNoteClass );
+			addClass( this.cont, prefix + hasNoteClass );
 		},
 		
 		delete: function () {
 			this.ta.removeEventListener( 'keyup', this );
 			this.cont.removeChild( this.ta.parentNode );
-			removeClass( this.cont, hasNoteClass );
+			removeClass( this.cont, prefix + hasNoteClass );
 			delete data[ this.url ];
 			save();
 		},
@@ -99,7 +99,7 @@ traderaPlus.notes = ( function() {
 	
 	function handleDropdownClick( e ) {
 		var cont = parentByClass( this, 'Box-F' );
-		if ( cont.className.match( hasNoteClass ) ) cont.note.delete();
+		if ( cont.className.match( prefix + hasNoteClass ) ) cont.note.delete();
 		else cont.note = new Note( cont, true );
 	}
 	
