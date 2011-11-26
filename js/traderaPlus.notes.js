@@ -13,22 +13,24 @@ traderaPlus.notes = ( function() {
 	function init () {
 		prefix = traderaPlus.prefix;
 		itemSelector = traderaPlus.itemSelector;
-		
 		load();
 		renderNotes();
-		
-		var els = document.querySelectorAll( dropdownSelector );
-		for( var i = 0, el; el = els[ i ]; i++ ) {
-			el.addEventListener( 'click', handleDropdownClick, false );
-		}
+		attachListeners();
 	}
 	
 	function load () {
-		data = JSON.parse( localStorage.getItem( prefix + 'notes') ) || {};
+		data = JSON.parse( localStorage.getItem( prefix + 'notes' ) ) || {};
 	}
 	
 	function save () {
 		localStorage.setItem( prefix + 'notes', JSON.stringify( data ) );
+	}
+	
+	function attachListeners () {
+		var els = document.querySelectorAll( dropdownSelector );
+		for( var i = 0, el; el = els[ i ]; i++ ) {
+			el.addEventListener( 'click', handleDropdownClick, false );
+		}
 	}
 	
 	
@@ -90,7 +92,8 @@ traderaPlus.notes = ( function() {
 	
 	function renderNotes() {
 		var els = document.querySelectorAll( itemSelector );
-		for ( var i = 0, el; el = els[ i ]; i++ ) {
+		for ( var i = 0, el, url; el = els[ i ]; i++ ) {
+			url = getItemUrl( el );
 			if ( data[ getItemUrl( el ) ] ) {
 				el.note = new Note( el );
 			}

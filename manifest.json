@@ -10,7 +10,10 @@
 			"js/utils.js", 
 			"js/tmpl.js", 
 			"js/en.js", 
-			"js/traderaPlus.js"
+			"js/traderaPlus.js",
+			"js/traderaPlus.items.js",
+			"js/traderaPlus.notes.js",
+			"js/traderaPlus.sellers.js"
 		],
 		"run_at": "document_end"
 	}],

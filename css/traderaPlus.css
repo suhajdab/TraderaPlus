@@ -113,11 +113,11 @@
 	content: attr(data-label);
 }
 
-.traderaPlus-blockedItem .traderaPlus-dropdown a[data-fn="addBlockedItem"]:after {
+.traderaPlus-blockedItem .traderaPlus-dropdown a[data-controller="items"]:after {
 	content: attr(data-altlabel);
 }
 
-.traderaPlus-blockedSeller .traderaPlus-dropdown a[data-fn="addBlockedSeller"]:after {
+.traderaPlus-blockedSeller .traderaPlus-dropdown a[data-controller="sellers"]:after {
 	content: attr(data-altlabel);
 }
 
