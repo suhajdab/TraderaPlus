@@ -1,77 +1,8 @@
-#traderaPlus-fixedPanel {
-	position: fixed;
-	font-family: "Helvetica Neue", Helvetica, Arial, san-serif;
-}
-
-#traderaPlus-fixedPanel fieldset {
-	height: 8px;
-	padding: 10px 8px 4px;
-	border: 1px solid #ddd;
-	border-radius: 3px;
-	overflow: hidden;
-	-webkit-transition: height 250ms ease-in-out;
-}
-
-#traderaPlus-fixedPanel legend {
-	color: #999;
-	cursor: pointer;
-	font-size: 80%;
-}
-
-#traderaPlus-fixedPanel legend::after {
-	content: "+";
-	padding-left: 8px;
-}
-
-#traderaPlus-fixedPanel legend:hover::after {
-	color: #000;
-}
-
-#traderaPlus-fixedPanel fieldset.expanded {
-	height: 400px;
-}
-
-#traderaPlus-fixedPanel fieldset.expanded legend::after {
-	content: "-";
-}
-
-#traderaPlus-fixedPanel #sellers span {
-	float: left;
-	padding: 3px 6px;
-	background: #ddd;
-	border: #999;
-	border-radius: 3px;
-}
-/*
-#traderaPlus-fixedPanel input[type="checkbox"] {
-	background: #c00;
-	width: 16px;
-	height: 16px;
-	-webkit-appearance: none;
-}
-
-#traderaPlus-fixedPanel input[type="checkbox"][checked] {
-	background: #0c0;
-}
-*/
-
-/*	Plus UI in page	*/
-#traderaPlus-fixedPanel button {
-	height: 24px;
-	width: 24px;
-	padding: 0;
-	background: #c00;
-	border: none;
-	border-radius: 5px;
-	color: #fff;
-	font-weight: bold
-	line-height: 24px;
-}
-
 .objectList .Box-F.listStyle {
 	position: relative;
 }
 
+/*	Dropdown	*/
 .traderaPlus-dropdown {
 	position: absolute;
 	display: block;
@@ -152,20 +83,28 @@
 	padding: 2px 4px;
 }
 
+/*	Note	*/
 .traderaPlus-note {
-	width: 404px;
+	width: 727px;
 	padding: 5px 8px;
-	background: yellow;
+	margin: -8px 0px 0px;
+	background-image: -webkit-linear-gradient(#fee56e, #ffdc42);
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	-webkit-box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
 }
 
 .traderaPlus-note textarea {
 	width: 100%;
+	min-height: 39px;
+	max-height: 76px;
 	margin: 0;
 	padding: 0;
 	background: transparent;
 	border: none;
 	font-family: sans-serif;
 	outline: none;
+	resize: vertical;
 	-webkit-appearance: none;
 }
 
