@@ -6,6 +6,7 @@
 		-	change menu when item blocked, note added
 		-	modify rendering items to searching for in-page elements in js data ( rather than searching for data objects in the page )
 		-	google analytics not working!
+		-	autoresize on note
 */
 
 var traderaPlus = ( function ( d, undefined ) {
@@ -66,7 +67,7 @@ var traderaPlus = ( function ( d, undefined ) {
 			d.body.addEventListener( 'click', handleBodyClick, false );
 			prev = this;
 		}
-		_gaq.push(['_trackEvent', e.target.dataset.controller, 'clicked']);
+		_gaq.push(['tp._trackEvent', e.target.dataset.controller, 'clicked']);
 	}
 	
 	function handleBodyClick() {

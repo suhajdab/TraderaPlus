@@ -9,7 +9,7 @@
 			"js/google.analytics.js", 
 			"js/utils.js", 
 			"js/tmpl.js", 
-			"js/en.js", 
+			"js/sv.js", 
 			"js/traderaPlus.js",
 			"js/traderaPlus.items.js",
 			"js/traderaPlus.notes.js",
@@ -18,6 +18,8 @@
 		"run_at": "document_end"
 	}],
 	"permissions": [
-		"notifications"
-	]
+		"http://*.google.com/",
+		"https://*.google.com/"
+	],
+	"content_security_policy": "default-src 'self' https://ssl.google-analytics.com"
 }
