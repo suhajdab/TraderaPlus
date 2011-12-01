@@ -97,13 +97,14 @@
 .traderaPlus-note textarea {
 	width: 100%;
 	min-height: 39px;
-	max-height: 76px;
 	margin: 0;
 	padding: 0;
 	background: transparent;
 	border: none;
 	font-family: sans-serif;
+	line-height: 14px;
 	outline: none;
+	overflow: hidden;
 	resize: vertical;
 	-webkit-appearance: none;
 }

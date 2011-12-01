@@ -50,24 +50,30 @@ traderaPlus.notes = ( function() {
 		init: function() {
 			this.url = getItemUrl( this.cont );
 			this.build();
-			this.attach();
+			this.activate();
 		},
 		
 		build: function () {
-			var that = this,
-				aside = document.createElement( 'aside' );
+			var aside = document.createElement( 'aside' );
 			aside.className = prefix + 'note';
 			aside.innerHTML = tmpl( template, traderaPlusStrings );
 			this.cont.appendChild( aside );
+		},
+		
+		activate: function () {
+			var that = this,
+				ta = this.cont.querySelector( 'textarea' );
 			
-			var ta = this.cont.querySelector( 'textarea' );
-			if ( data[ this.url ] ) ta.value = data[ this.url ];
+			this.lh = parseInt( getComputedStyle( ta, null).lineHeight, 10 );
+				
+			if ( data[ this.url ] ) { 
+				ta.value = data[ this.url ];
+				this.autogrow( ta );
+			}
 			if ( this.autofocus ) ta.focus();
 			ta.addEventListener( 'keyup', that, false );
 			this.ta = ta;
-		},
-		
-		attach: function () {
+			
 			addClass( this.cont, prefix + hasNoteClass );
 		},
 		
@@ -81,7 +87,16 @@ traderaPlus.notes = ( function() {
 		
 		keyupHandler: function () {
 			data[ this.url ] = this.ta.value;
+			this.autogrow( this.ta );
 			save();
+		},
+		
+		autogrow: function ( el ) {
+			var newHeight = el.scrollHeight,
+	            currentHeight = el.clientHeight;
+	        if (newHeight > currentHeight) {
+	            el.style.height = newHeight + 3 * this.lh + "px";
+	        }
 		}
 	}
 	
