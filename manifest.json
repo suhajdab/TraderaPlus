@@ -6,7 +6,6 @@
 		"matches": ["http://www.tradera.com/*"],
 		"css": ["css/traderaPlus.css"],
 		"js": [
-			"js/google.analytics.js", 
 			"js/utils.js", 
 			"js/tmpl.js", 
 			"js/sv.js", 
@@ -16,10 +15,5 @@
 			"js/traderaPlus.sellers.js"
 		],
 		"run_at": "document_end"
-	}],
-	"permissions": [
-		"http://*.google.com/",
-		"https://*.google.com/"
-	],
-	"content_security_policy": "default-src 'self' https://ssl.google-analytics.com"
+	}]
 }
