@@ -3,10 +3,7 @@
 		-	balloon help like guide to where things are when first ran
 		-	icons for panels on fixed control panel
 		-	verify that added items, sellers are not already in list
-		-	change menu when item blocked, note added
-		-	modify rendering items to searching for in-page elements in js data ( rather than searching for data objects in the page )
 		-	google analytics not working!
-		-	autoresize on note
 */
 
 var traderaPlus = ( function ( d, undefined ) {
