@@ -7,5 +7,17 @@ A Chrome Extention for tradera.com that will give you the following features:
 
 This extention stores all you settings and data on the client side ( in your browser ). Neither tradera, nor the developer know what you're doing. All info is private. This also means that data is only available in the browser where you save them, independantly of your tradera account.
 
+Usage:
+A small dropdown will appear when you hover an item on search result or category pages. Click on it to view your option.
+
+Version history:
+0.8 - added option to switch between hiding or fading out blocked products / sellers
+0.7 - first release
+
+Want to contribute, check out the source code?
+github: https://github.com/suhajdab/TraderaPlus
+
+
 Balázs Suhajda @ onereason.eu
+twitter: suhajdab
 2011-12-03
