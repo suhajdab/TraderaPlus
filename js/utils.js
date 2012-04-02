@@ -1,3 +1,16 @@
+//	shorthand for querySelector
+function qs ( sel, context ) {
+	var context = context || document;
+	return context.querySelector( sel );
+}
+
+//	shorthand for querySelectorAll
+function qsa ( sel, context ) {
+	var context = context || document,
+		 res = context.querySelectorAll( sel );
+	return [].slice.apply( res );
+}
+
 function addClass( el, value ) {
 	var classNames, i, l, elem,
 		setClass, c, cl;

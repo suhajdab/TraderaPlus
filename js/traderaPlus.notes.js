@@ -6,9 +6,10 @@ traderaPlus.notes = ( function() {
 	var data, prefix;
 	
 	var template = '<textarea placeholder="{=notePlaceholder}"></textarea>',
+		controller = 'notes',
 		linkSelector = '.ObjectHeadline a',
 		hasNoteClass = 'hasNote',
-		dropdownSelector = 'a[data-controller="notes"]';
+		dropdownSelector = 'a[data-controller="' + controller + '"]';
 	
 	function init () {
 		prefix = traderaPlus.prefix;
@@ -19,11 +20,11 @@ traderaPlus.notes = ( function() {
 	}
 	
 	function load () {
-		data = JSON.parse( localStorage.getItem( prefix + 'notes' ) ) || {};
+		data = JSON.parse( localStorage.getItem( prefix + controller ) ) || {};
 	}
 	
 	function save () {
-		localStorage.setItem( prefix + 'notes', JSON.stringify( data ) );
+		localStorage.setItem( prefix + controller, JSON.stringify( data ) );
 	}
 	
 	function attachListeners () {

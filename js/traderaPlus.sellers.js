@@ -1,31 +1,24 @@
-traderaPlus.sellers = ( function() {
-	var data, prefix;
+traderaPlus.sellers = ( function( tp ) {
+	var data;
 	
-	var linkSelector = '.seller a',
-		dropdownSelector = 'a[data-controller="sellers"]',
+	var controller = 'sellers',
+		linkSelector = '.seller a',
+		dropdownSelector = 'a[data-controller="' + controller + '"]',
 		blockedClass = 'blockedSeller';
 	
 
 	function init () {
-		prefix = traderaPlus.prefix;
-		load();
+		data = tp.load( controller );
 		render();
-		attachListeners();
-	}
-
-	function load () {
-		data = JSON.parse( localStorage.getItem( prefix + 'sellers' ) ) || {};
+		qsa( dropdownSelector ).forEach( attachListener );
 	}
 
 	function save () {
-		localStorage.setItem( prefix + 'sellers', JSON.stringify( data ) );
+		tp.save( controller, data );
 	}
 	
-	function attachListeners () {
-		var els = document.querySelectorAll( dropdownSelector );
-		for( var i = 0, el; el = els[ i ]; i++ ) {
-			el.addEventListener( 'click', handleDropdownClick, false );
-		}
+	function attachListener ( el ) {
+		el.addEventListener( 'click', handleDropdownClick, false );
 	}
 	
 	function block ( cont ) {
@@ -38,7 +31,7 @@ traderaPlus.sellers = ( function() {
 		render();
 	}
 
-	function unblock( cont ) {
+	function unblock ( cont ) {
 		var url = getItemUrl( cont );
 		delete data[ url ];
 		save();
@@ -46,30 +39,28 @@ traderaPlus.sellers = ( function() {
 	}
 	
 	function getItemUrl ( el ) {
-		var a = el.querySelector( linkSelector );
+		var a = qs( linkSelector, el );
 		return a ? a.getAttribute( 'href' ) : '';
 	}
 
-	function render() {
-		var els = document.querySelectorAll( '.' + prefix + blockedClass );
-		for ( var i = 0, el; el = els[ i ]; i++ ) {
-			removeClass( el, prefix + blockedClass );
-		}
+	function render () {
+		qsa( '.' + tp.prefix + blockedClass ).forEach( function ( el ) {
+			removeClass( el, tp.prefix + blockedClass );
+		});
 		
-		var els = document.querySelectorAll( itemSelector );
-		for ( var i = 0, el, url; el = els[ i ]; i++ ) {
+		qsa( tp.itemSelector ).forEach( function ( el ) {
 			url = getItemUrl( el );
-			if ( data[ url ] ) addClass( el, prefix + blockedClass );
-		}
+			if ( data[ url ] ) addClass( el, tp.prefix + blockedClass );
+		});
 	}
 	
-	function handleDropdownClick( e ) {
+	function handleDropdownClick ( e ) {
 		var cont = parentByClass( this, 'Box-F' );
-		if ( cont.className.match( prefix + blockedClass ) ) unblock( cont );
+		if ( cont.className.match( tp.prefix + blockedClass ) ) unblock( cont );
 		else block( cont );
 	}
 	
 	return {
 		init: init
 	}
-})();
+})( traderaPlus );

@@ -1,70 +1,62 @@
-traderaPlus.items = ( function() {
-	var data, prefix;
+traderaPlus.items = ( function( tp ) {
+	var data;
 	
-	var linkSelector = '.ObjectHeadline a',
-		dropdownSelector = 'a[data-controller="items"]',
+	var controller = 'items',
+		linkSelector = '.ObjectHeadline a',
+		dropdownSelector = 'a[data-controller="' + controller + '"]',
 		blockedClass = 'blockedItem';
 	
 
 	function init () {
-		prefix = traderaPlus.prefix;
-		load();
+		data = tp.load( controller );
 		render();
-		attachListeners();
-	}
-
-	function load () {
-		data = JSON.parse( localStorage.getItem( prefix + 'items' ) ) || {};
+		qsa( dropdownSelector ).forEach( attachListener );
 	}
 
 	function save () {
-		localStorage.setItem( prefix + 'items', JSON.stringify( data ) );
+		tp.save( controller, data );
 	}
 	
-	function attachListeners () {
-		var els = document.querySelectorAll( dropdownSelector );
-		for( var i = 0, el; el = els[ i ]; i++ ) {
-			el.addEventListener( 'click', handleDropdownClick, false );
-		}
+	function attachListener ( el ) {
+		el.addEventListener( 'click', handleDropdownClick, false );
 	}
 	
 	function block ( cont ) {
-		var a = cont.querySelector( linkSelector ),
+		var a = qs( linkSelector, cont ),
 			url = a.getAttribute( 'href' ),
 			title = a.innerText;
 		
 		data[ url ] = title;
-		addClass( cont, prefix + blockedClass );
+		addClass( cont, tp.prefix + blockedClass );
 		save();
 	}
 
 	function unblock( cont ) {
 		var url = getItemUrl( cont );
 		delete data[ url ];
-		removeClass( cont, prefix + blockedClass );
+		removeClass( cont, tp.prefix + blockedClass );
 		save();
 	}
 	
 	function getItemUrl ( el ) {
-		var a = el.querySelector( linkSelector );
+		var a = qs( linkSelector, el );
 		return a ? a.getAttribute( 'href' ) : '';
 	}
 
 	function render() {
-		var els = document.querySelectorAll( itemSelector );
-		for ( var i = 0, el, url; el = els[ i ]; i++ ) {
+		qsa( itemSelector ).forEach( function ( el ) {
 			url = getItemUrl( el );
-			if ( data[ url ] ) addClass( el, prefix + blockedClass );
-		}
+			if ( data[ url ] ) addClass( el, tp.prefix + blockedClass );
+		});
 	}
 	
 	function handleDropdownClick( e ) {
 		var cont = parentByClass( this, 'Box-F' );
-		if ( cont.className.match( prefix + blockedClass ) ) unblock( cont );
+		if ( cont.className.match( tp.prefix + blockedClass ) ) unblock( cont );
 		else block( cont );
 	}
 	
 	return {
 		init: init
 	}
-})();
+})( traderaPlus );

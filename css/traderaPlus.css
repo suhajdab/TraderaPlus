@@ -16,6 +16,7 @@
 	border-radius: 0 0 3px 3px;
 	cursor: pointer;
 	opacity: 0.25;
+	overflow: hidden;
 	-webkit-transition: opacity 150ms linear;
 }
 
@@ -36,24 +37,34 @@
 }
 
 .traderaPlus-dropdown a {
+	position: relative;
 	display: none;
+	padding: 3px 8px;
 	color: #666;
+	text-shadow: 0 1px 0 #fff;
 }
 
-.traderaPlus-dropdown a:after {
+.traderaPlus-dropdown a:before {
 	content: attr(data-label);
 }
 
-.traderaPlus-blockedItem .traderaPlus-dropdown a[data-controller="items"]:after {
+.traderaPlus-blockedItem .traderaPlus-dropdown a[data-controller="items"]::before {
 	content: attr(data-altlabel);
 }
 
-.traderaPlus-blockedSeller .traderaPlus-dropdown a[data-controller="sellers"]:after {
+.traderaPlus-blockedSeller .traderaPlus-dropdown a[data-controller="sellers"]::before {
 	content: attr(data-altlabel);
 }
 
-.traderaPlus-hasNote .traderaPlus-dropdown a[data-controller="notes"]:after {
+.traderaPlus-hasNote .traderaPlus-dropdown a[data-controller="notes"]::before {
 	content: attr(data-altlabel);
+}
+
+.traderaPlus-hideblocked a[data-controller="options"]::after {
+	position: absolute;
+	top: 3px;
+	right: 8px;
+	content: "✔";
 }
 
 .traderaPlus-dropdown a:hover {
@@ -62,10 +73,10 @@
 }
 
 .traderaPlus-dropdown[data-open="true"] {
-	height: 55px;
-	width: 120px;
+	height: 78px;
+	width: 140px;
 	padding: 2px 0 12px;
-	box-shadow: 0 3px 2px rgba(0,0,0,0.2);
+	box-shadow: 0 3px 2px rgba(0,0,0,0.15);
 	opacity: 1;
 	-webkit-transition: height 150ms linear;
 }
@@ -80,7 +91,6 @@
 
 .traderaPlus-dropdown[data-open="true"] a {
 	display: block;
-	padding: 2px 4px;
 }
 
 /*	Note	*/
@@ -107,6 +117,34 @@
 	overflow: hidden;
 	resize: vertical;
 	-webkit-appearance: none;
+}
+
+
+
+/*	Dialog	*/
+#traderPlus-dialog {
+	position: absolute;
+	top: -10%;
+	left: 50%;
+	width: 250px;
+	margin: -125px;
+	-webkit-transition: top 200ms ease-in-out;
+}
+
+#traderPlus-dialog.show {
+	top: 25%;
+}
+
+#traderPlus-dialog header {
+
+}
+
+#traderPlus-dialog article {
+
+}
+
+#traderPlus-dialog fieldset {
+
 }
 
 
