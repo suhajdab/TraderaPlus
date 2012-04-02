@@ -4,21 +4,7 @@
 // based on John Resig - http://ejohn.org/ - MIT Licensed
 // but modified to using my favorite: {}
 //  ex: {=seller}
-// 
-// <script type="text/html" id="item_tmpl">
-//   <div id="<%=id%>" class="<%=(i % 2 == 1 ? " even" : "")%>">
-//     <div class="grid_1 alpha right">
-//       <img class="righted" src="<%=profile_image_url%>"/>
-//     </div>
-//     <div class="grid_6 omega contents">
-//       <p><b><a href="/<%=from_seller%>"><%=from_seller%></a>:</b> <%=text%></p>
-//     </div>
-//   </div>
-// </script>
-//
-//
-// var results = document.getElementById("results");
-// results.innerHTML = tmpl("item_tmpl", dataObject);
+
 
 (function(){
   var cache = {};
