@@ -11,9 +11,9 @@
 	width: 15px;
 	height: 12px;
 	background-image: -webkit-linear-gradient(#fee56e, #ffdc42);
-	border: 1px solid #ccc;
+	border: 2px solid #fff;
 	border-top: none;
-	border-radius: 0 0 3px 3px;
+	border-radius: 0 0 5px 5px;
 	cursor: pointer;
 	opacity: 0.25;
 	overflow: hidden;
@@ -76,13 +76,13 @@
 	height: 78px;
 	width: 140px;
 	padding: 2px 0 12px;
-	box-shadow: 0 3px 2px rgba(0,0,0,0.15);
+	box-shadow: 0 2px 3px rgba(0,0,0,0.25);
 	opacity: 1;
 	-webkit-transition: height 150ms linear;
 }
 
 .traderaPlus-dropdown[data-open="true"]::after {
-	left: 51px;
+	left: 65px;
 	border-top: none;
 	border-bottom: 4px solid #fff;
 	border-left: 4px solid transparent; 
