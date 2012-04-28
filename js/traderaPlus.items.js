@@ -40,13 +40,13 @@ traderaPlus.items = ( function( tp ) {
 	
 	function getItemUrl ( el ) {
 		var a = qs( linkSelector, el );
-		return a ? a.getAttribute( 'href' ) : '';
+		return a ? a.getAttribute( 'href' ) : false;
 	}
 
 	function render() {
 		qsa( itemSelector ).forEach( function ( el ) {
 			url = getItemUrl( el );
-			if ( data[ url ] ) addClass( el, tp.prefix + blockedClass );
+			if ( url && data[ url ] ) addClass( el, tp.prefix + blockedClass );
 		});
 	}
 	

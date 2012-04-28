@@ -1,7 +1,6 @@
 var traderaPlus = {
 
 	prefix : 'traderaPlus-',
-	blockedSellerClass : 'blockedSeller',
 	itemSelector : '.objectList .Box-F.listStyle',
 
 	log : function ( msg ) {
