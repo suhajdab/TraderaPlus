@@ -1,14 +1,29 @@
 {
+	"manifest_version": 2,
 	"name": "Tradera+",
-	"version": "0.8",
+	"version": "0.8.0.1",
 	"description": "Allows you to block items, sellers from appearing in search results, and to add personal notes to items on tradera.com",
+
+	"web_accessible_resources": [
+		"css/traderaPlus.css",
+		"js/utils.js",
+		"js/tmpl.js",
+		"data/sv.js",
+		"js/traderaPlus.js",
+		"js/traderaPlus.options.js",
+		"js/traderaPlus.dropdown.js",
+		"js/traderaPlus.items.js",
+		"js/traderaPlus.notes.js",
+		"js/traderaPlus.sellers.js"
+	],
+
 	"content_scripts": [{
 		"matches": ["http://www.tradera.com/*"],
 		"css": ["css/traderaPlus.css"],
 		"js": [
-			"js/utils.js", 
-			"js/tmpl.js", 
-			"data/sv.js", 
+			"js/utils.js",
+			"js/tmpl.js",
+			"data/sv.js",
 			"js/traderaPlus.js",
 			"js/traderaPlus.options.js",
 			"js/traderaPlus.dropdown.js",
