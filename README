@@ -1,11 +1,11 @@
 Tradera+
 
-A Chrome Extention for tradera.com that will give you the following features:
+A Chrome extension for tradera.com that will give you the following features:
 	- block items ( stop looking at the same lame auction over & over because the title seems interesting )
 	- block sellers ( never see the cheap gadgets from the same seller spamming the whole products page again )
 	- add personal notes to auctions ( put a reminder about real price, special features, so you can quickly evaluate your max price )
 
-This extention stores all you settings and data on the client side ( in your browser ). Neither tradera, nor the developer know what you're doing. All info is private. This also means that data is only available in the browser where you save them, independantly of your tradera account.
+This extension stores all you settings and data on the client side ( in your browser ). Neither tradera, nor the developer know what you're doing. All info is private. This also means that data is only available in the browser where you save them, independantly of your tradera account.
 
 Usage:
 A small dropdown will appear when you hover an item on search result or category pages. Click on it to view your option.
