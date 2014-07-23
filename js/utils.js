@@ -56,9 +56,9 @@ function parentByClass( elem, className ) {
 
 	do {
 		cur = cur.parentNode;
-		if ( cur.className.indexOf( className ) !== -1 ) matched = cur;
+		if ( cur.className.split( ' ' ).indexOf( className ) !== -1 ) matched = cur;
 	}
-	while ( cur && cur.nodeType !== 9 && cur.className.indexOf( className ) === -1 );
+	while ( cur && cur.nodeType !== 9 && cur.className.split( ' ' ).indexOf( className ) === -1 );
 	return matched;
 }
 
