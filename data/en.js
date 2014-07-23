@@ -9,5 +9,6 @@ var traderaPlusStrings = {
 	"unblockSeller": "Unblock seller",
 	"showOptions": "Show options",
 	"dropdownGuide": "To block any seller or item, or add a personal note, just click the little triangle available in the corner of all items.",
-	"option_hideBlocked": "Hide blocked items"
+	"option_hideBlocked": "Hide blocked items",
+	"clearalert": "Tradera+ changes!\n\nDue to a major change in tradera.com, the Tradera+ extension required a major upgrade and thus previous blocked items / sellers data was deleted. Sorry."
 };
