@@ -2,13 +2,13 @@ traderaPlus.sellers = ( function( tp ) {
 	var data;
 	
 	var controller = 'sellers',
-		linkSelector = '.seller a',
+		elSelector = '.item-card-details-seller',
 		dropdownSelector = 'a[data-controller="' + controller + '"]',
 		blockedClass = 'blockedSeller';
 	
 
 	function init () {
-		data = tp.load( controller );
+		data = tp.load( controller ) || [];
 		render();
 		qsa( dropdownSelector ).forEach( attachListener );
 	}
@@ -22,25 +22,28 @@ traderaPlus.sellers = ( function( tp ) {
 	}
 	
 	function block ( cont ) {
-		var a = cont.querySelector( linkSelector ),
-			url = a.getAttribute( 'href' ),
-			title = a.innerText;
-		
-		data[ url ] = title;
+		var name = getSeller( cont );
+
+		data.push( name );
 		save();
 		render();
 	}
 
 	function unblock ( cont ) {
-		var url = getItemUrl( cont );
-		delete data[ url ];
-		save();
-		render();
+		var name = getSeller( cont ),
+			i = data.indexOf( name );
+
+		if ( i !== -1 ) {
+			data.splice( i, 1 );
+			save();
+			render();
+		}
 	}
 	
-	function getItemUrl ( el ) {
-		var a = qs( linkSelector, el );
-		return a ? a.getAttribute( 'href' ) : false;
+	function getSeller ( cont ) {
+		var el = qs( elSelector, cont ),
+			match = el.innerText.replace(/^\s+|\s+$|\s+(?=\s)/g, "").match(/[^ |]*/);
+		return match.length ? match[ 0 ] : false;
 	}
 
 	function render () {
@@ -49,13 +52,13 @@ traderaPlus.sellers = ( function( tp ) {
 		});
 		
 		qsa( tp.itemSelector ).forEach( function ( el ) {
-			url = getItemUrl( el );
-			if ( url && data[ url ] ) addClass( el, tp.prefix + blockedClass );
+			var name = getSeller( el );
+			if ( name && data.indexOf( name ) !== -1 ) addClass( el, tp.prefix + blockedClass );
 		});
 	}
 	
-	function handleDropdownClick ( e ) {
-		var cont = parentByClass( this, 'Box-F' );
+	function handleDropdownClick () {
+		var cont = parentByClass( this, 'item-card' );
 		if ( cont.className.match( tp.prefix + blockedClass ) ) unblock( cont );
 		else block( cont );
 	}

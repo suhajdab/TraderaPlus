@@ -2,18 +2,18 @@
  	TODO:
 		- class change on item to show alternate menu label
  */
-traderaPlus.notes = ( function() {
+traderaPlus.notes = ( function( tp ) {
 	var data, prefix;
 	
 	var template = '<textarea placeholder="{=notePlaceholder}"></textarea>',
 		controller = 'notes',
-		linkSelector = '.ObjectHeadline a',
+		idAttr = 'data-item-id',
 		hasNoteClass = 'hasNote',
 		dropdownSelector = 'a[data-controller="' + controller + '"]';
 	
 	function init () {
-		prefix = traderaPlus.prefix;
-		itemSelector = traderaPlus.itemSelector;
+		prefix = tp.prefix;
+		itemSelector = tp.itemSelector;
 		load();
 		renderNotes();
 		attachListeners();
@@ -49,7 +49,7 @@ traderaPlus.notes = ( function() {
 		},
 		
 		init: function() {
-			this.url = getItemUrl( this.cont );
+			this.id = getItemId( this.cont );
 			this.build();
 			this.activate();
 		},
@@ -67,8 +67,8 @@ traderaPlus.notes = ( function() {
 			
 			this.lh = parseInt( getComputedStyle( ta, null).lineHeight, 10 );
 				
-			if ( data[ this.url ] ) { 
-				ta.value = data[ this.url ];
+			if ( data[ this.id ] ) {
+				ta.value = data[ this.id ];
 				this.autogrow( ta );
 			}
 			if ( this.autofocus ) ta.focus();
@@ -82,12 +82,12 @@ traderaPlus.notes = ( function() {
 			this.ta.removeEventListener( 'keyup', this );
 			this.cont.removeChild( this.ta.parentNode );
 			removeClass( this.cont, prefix + hasNoteClass );
-			delete data[ this.url ];
+			delete data[ this.id ];
 			save();
 		},
 		
 		keyupHandler: function () {
-			data[ this.url ] = this.ta.value;
+			data[ this.id ] = this.ta.value;
 			this.autogrow( this.ta );
 			save();
 		},
@@ -99,25 +99,28 @@ traderaPlus.notes = ( function() {
 	            el.style.height = newHeight + 3 * this.lh + "px";
 	        }
 		}
-	}
-	
-	function getItemUrl ( el ) {
-		var a = el.querySelector( linkSelector );
-		return a ? a.getAttribute( 'href' ) : '';
+	};
+
+	function getItemId ( el ) {
+		return el.getAttribute( idAttr );
 	}
 	
 	function renderNotes() {
+		tp.observer.pause();
+
 		var els = document.querySelectorAll( itemSelector );
-		for ( var i = 0, el, url; el = els[ i ]; i++ ) {
-			url = getItemUrl( el );
-			if ( data[ getItemUrl( el ) ] ) {
+		for ( var i = 0, el, id; el = els[ i ]; i++ ) {
+			id = getItemId( el );
+			if ( data[ id ] ) {
 				el.note = new Note( el );
 			}
 		}
+
+		tp.observer.resume();
 	}
 	
-	function handleDropdownClick( e ) {
-		var cont = parentByClass( this, 'Box-F' );
+	function handleDropdownClick() {
+		var cont = parentByClass( this, 'item-card' );
 		if ( cont.className.match( prefix + hasNoteClass ) ) cont.note.delete();
 		else cont.note = new Note( cont, true );
 	}
@@ -125,4 +128,4 @@ traderaPlus.notes = ( function() {
 	return {
 		init: init
 	}
-})();
+})( traderaPlus );

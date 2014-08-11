@@ -2,13 +2,13 @@ traderaPlus.items = ( function( tp ) {
 	var data;
 	
 	var controller = 'items',
-		linkSelector = '.ObjectHeadline a',
+		idAttr = 'data-item-id',
 		dropdownSelector = 'a[data-controller="' + controller + '"]',
 		blockedClass = 'blockedItem';
 	
 
 	function init () {
-		data = tp.load( controller );
+		data = tp.load( controller ) || [];
 		render();
 		qsa( dropdownSelector ).forEach( attachListener );
 	}
@@ -22,36 +22,37 @@ traderaPlus.items = ( function( tp ) {
 	}
 	
 	function block ( cont ) {
-		var a = qs( linkSelector, cont ),
-			url = a.getAttribute( 'href' ),
-			title = a.innerText;
+		var id = getItemId( cont );
 		
-		data[ url ] = title;
+		data.push( id );
 		addClass( cont, tp.prefix + blockedClass );
 		save();
 	}
 
 	function unblock( cont ) {
-		var url = getItemUrl( cont );
-		delete data[ url ];
-		removeClass( cont, tp.prefix + blockedClass );
-		save();
+		var id = getItemId( cont ),
+			i = data.indexOf( id );
+
+		if ( i !== -1 ) {
+			data.splice( i, 1 );
+			save();
+			removeClass( cont, tp.prefix + blockedClass );
+		}
 	}
 	
-	function getItemUrl ( el ) {
-		var a = qs( linkSelector, el );
-		return a ? a.getAttribute( 'href' ) : false;
+	function getItemId ( el ) {
+		return el.getAttribute( idAttr );
 	}
 
 	function render() {
 		qsa( itemSelector ).forEach( function ( el ) {
-			url = getItemUrl( el );
-			if ( url && data[ url ] ) addClass( el, tp.prefix + blockedClass );
+			id = getItemId( el );
+			if ( id && data.indexOf( name ) !== -1 ) addClass( el, tp.prefix + blockedClass );
 		});
 	}
 	
-	function handleDropdownClick( e ) {
-		var cont = parentByClass( this, 'Box-F' );
+	function handleDropdownClick() {
+		var cont = parentByClass( this, 'item-card' );
 		if ( cont.className.match( tp.prefix + blockedClass ) ) unblock( cont );
 		else block( cont );
 	}

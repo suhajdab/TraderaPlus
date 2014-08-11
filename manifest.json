@@ -23,6 +23,7 @@
 		"js/traderaPlus.dropdown.js",
 		"js/traderaPlus.items.js",
 		"js/traderaPlus.notes.js",
+		"js/traderaPlus.observer.js",
 		"js/traderaPlus.sellers.js"
 	],
 
@@ -40,6 +41,7 @@
 			"js/traderaPlus.dropdown.js",
 			"js/traderaPlus.items.js",
 			"js/traderaPlus.notes.js",
+			"js/traderaPlus.observer.js",
 			"js/traderaPlus.sellers.js"
 		],
 		"run_at": "document_end"

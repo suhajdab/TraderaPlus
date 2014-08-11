@@ -14,7 +14,7 @@ traderaPlus.dropdown = ( function ( tp ) {
 					+ '<a data-controller="items" data-label="{=blockItem}" data-altlabel="{=unblockItem}"></a>'
 					+ '<a data-controller="sellers" data-label="{=blockSeller}" data-altlabel="{=unblockSeller}"></a>'
 					+ '<a data-controller="options" data-label="{=option_hideBlocked}"></a>'
-	}
+	};
 	
 	function init() {
 		// add markup & classes to page
@@ -38,13 +38,20 @@ traderaPlus.dropdown = ( function ( tp ) {
 	}
 	
 	function renderDropdown( el ) {
-		var href = el.querySelector( 'a' ).href,
-			dropdown = document.createElement( 'nav' );
-		dropdown.className = tp.prefix + 'dropdown';
+		var dropdownClass = tp.prefix + 'dropdown';
+		if ( qs( '.' + dropdownClass, el )) return;
+
+		tp.observer.pause();
+
+		var dropdown = document.createElement( 'nav' );
+		dropdown.className = dropdownClass
 		dropdown.dataset.fn = 'dropdown';
 		dropdown.innerHTML = tmpl( templates.dropdown, traderaPlusStrings );
+		dropdown.title = 'Tradera+';
 		dropdown.addEventListener( 'click', handleDropdownClick, false );
-		el.appendChild( dropdown );
+		qs( '.item-card-body', el ).appendChild( dropdown );
+
+		tp.observer.resume();
 	}
 
 	return {

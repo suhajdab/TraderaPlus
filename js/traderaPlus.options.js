@@ -2,21 +2,19 @@ traderaPlus.options = ( function ( tp ) {
 
 	var data;
 
-	var controller = 'options'
+	var controller = 'options';
 
+	/*
 	var template = '<fieldset><legend>{=blockModeLegend}</legend>'
 				+ '<label>{=blockModeFade}><input type="radio" name="blockMode" value="fade"/></label>'
 				+'<label>{=blockModeHide}><input type="radio" name="blockMode" value="hide"/></label>'
 				+ '</fieldset>';
+	*/
 
 	function init () {
-		data = tp.load( controller );
+		data = tp.load( controller ) || {};
 		data = defaults.extendWith( data );
 		setBlockMode();
-		window.addEventListener( 'load', setup, false );
-	}
-
-	function setup () {
 		var dropdownSelector = 'a[data-controller="' + controller + '"]';
 		qsa( dropdownSelector ).forEach( attachListener );
 	}
@@ -39,10 +37,10 @@ traderaPlus.options = ( function ( tp ) {
 
 	var defaults = {
 		blockMode: 'fade' // fade or hide
+	};
+
+	return {
+		init: init
 	}
-
-	init();
-
-	return data;
 
 })( traderaPlus );

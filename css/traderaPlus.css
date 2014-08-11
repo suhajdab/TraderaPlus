@@ -16,6 +16,8 @@
 	opacity: 0.7;
 	overflow: hidden;
 	-webkit-transition: opacity 150ms linear;
+	-webkit-user-select: none;
+	user-select: none;
 }
 
 .layout-grid .traderaPlus-dropdown {
@@ -95,21 +97,19 @@
 }
 
 .traderaPlus-dropdown[data-open="true"] {
-	height: 100px;
+	height: 86px;
 	width: 145px;
-	padding: 2px 0 12px;
+	padding: 0;
 	background-image: -webkit-linear-gradient(#fee56e, #ffdc42);
 	box-shadow: 0 2px 3px rgba(0,0,0,0.25);
+	line-height: 15px;
 	/*opacity: 1;*/
+	z-index: 100;
 	-webkit-transition: height 150ms linear;
 }
 
 .traderaPlus-dropdown[data-open="true"]::after {
-	left: 65px;
-	border-top: none;
-	border-bottom: 4px solid #fff;
-	border-left: 4px solid transparent; 
-	border-right: 4px solid transparent; 
+	display: none;
 }
 
 .traderaPlus-dropdown[data-open="true"] a {
@@ -118,9 +118,9 @@
 
 /*	Note	*/
 .traderaPlus-note {
-	width: 727px;
+	width: auto;
 	padding: 5px 8px;
-	margin: -8px 0px 0px;
+	margin: 10px 0 0 15px;
 	background-image: -webkit-linear-gradient(#fee56e, #ffdc42);
 	border: 1px solid #ccc;
 	border-radius: 3px;
@@ -134,7 +134,9 @@
 	padding: 0;
 	background: transparent;
 	border: none;
+	box-shadow: none;
 	font-family: sans-serif;
+	font-size: 1em;
 	line-height: 14px;
 	outline: none;
 	overflow: hidden;
@@ -142,6 +144,9 @@
 	-webkit-appearance: none;
 }
 
+.traderaPlus-note textarea::-webkit-input-placeholder {
+	color: #666;
+}
 
 
 /*	Dialog	*/
@@ -187,3 +192,11 @@
 .traderaPlus-hideblocked .traderaPlus-blockedSeller {
 	display: none;
 }
+
+
+/* Overwriting tradera layour rules to accommodate for hidden items */
+.traderaPlus-hideblocked .layout-grid li.item-card {
+	padding-left: 1%;
+}
+
+
