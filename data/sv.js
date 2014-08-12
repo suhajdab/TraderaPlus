@@ -1,5 +1,5 @@
 var traderaPlusStrings = {
-	"about": "A Chrome Extention for tradera.com that will give you the following features:\n- block items ( stop looking at the same lame auction over & over because the title is interesting )\n- block sellers ( never see the cheap gadgets from the same seller spamming your whole result page again )\n- add personal notes to auctions ( put a reminder about real price, special features, so you can quickly evaluate your max price )",
+	"about": "TraderaPlus är en Chrome extension för tradera.com, som ger dig följande funktioner: blockera produkter, blockera säljare, lägga till personliga anteckningar till auktioner.",
 	"addNote": "Lägg till anteckning",
 	"notePlaceholder": "Lägg din personliga, praktiska notera här. T.ex. nytt pris, viktiga egenskaper, webbadress till produkt, etc.",
 	"removeNote": "Radera anteckning",
@@ -8,7 +8,12 @@ var traderaPlusStrings = {
 	"blockSeller": "Blockera säljare",
 	"unblockSeller": "Avblockera säljare",
 	"showOptions": "Visa inställningarna",
-	"dropdownGuide": "To block any seller or item, or add a personal note, just click the little triangle available in the corner of all items.",
+	"dropdownGuide": "För att blockera säljare eller objekt, eller lägga till en personlig kommentar, klicka bara den lilla gula triangeln.",
 	"option_hideBlocked": "Dölj alla blockerade",
-	"clearalert": "Tradera+ förändring!\n\nPå grund av en stor förändring på tradera.com, Tradera+ extension behövs en större uppgradering och därmed har tidigare blockerade objekt / säljare tagits bort. Ursäkta."
+	"clearalert": "Tradera+ förändring!\n\nPå grund av en stor förändring på tradera.com, Tradera+ extension behövs en större uppgradering och därmed har tidigare blockerade objekt / säljare tagits bort. Ursäkta.",
+	"blockedProduct": "en produkt",
+	"blockedProducts": "{=x} produkter",
+	"blockedSeller": "en säljare",
+	"blockedSellers": "{=x} säljare",
+	"blockedByTP": "blockerad av TraderaPlus"
 };

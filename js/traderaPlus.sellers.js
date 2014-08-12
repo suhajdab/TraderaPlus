@@ -1,5 +1,5 @@
 traderaPlus.sellers = ( function( tp ) {
-	var data;
+	var data, blockedCount = 0;
 	
 	var controller = 'sellers',
 		elSelector = '.item-card-details-seller',
@@ -47,14 +47,20 @@ traderaPlus.sellers = ( function( tp ) {
 	}
 
 	function render () {
+        blockedCount = 0;
 		qsa( '.' + tp.prefix + blockedClass ).forEach( function ( el ) {
 			removeClass( el, tp.prefix + blockedClass );
 		});
 		
 		qsa( tp.itemSelector ).forEach( function ( el ) {
 			var name = getSeller( el );
-			if ( name && data.indexOf( name ) !== -1 ) addClass( el, tp.prefix + blockedClass );
+			if ( name && data.indexOf( name ) !== -1 ) {
+                addClass( el, tp.prefix + blockedClass );
+                blockedCount ++;
+            }
 		});
+
+		tp.summary.update();
 	}
 	
 	function handleDropdownClick () {
@@ -64,6 +70,7 @@ traderaPlus.sellers = ( function( tp ) {
 	}
 	
 	return {
-		init: init
+		init: init,
+		getBlockedCount: function () { return blockedCount; }
 	}
 })( traderaPlus );

@@ -21,19 +21,20 @@ var traderaPlus = {
 	},
 
 	refresh : function () {
-		traderaPlus.upgrade.init();
 		traderaPlus.dropdown.init();
 		traderaPlus.options.init();
 		traderaPlus.notes.init();
 		traderaPlus.items.init();
 		traderaPlus.sellers.init();
+		traderaPlus.summary.update();
 
-		traderaPlus.log( 'traderaPlus refreshed' );
+		traderaPlus.log( 'refreshed' );
 	},
 
 	init : function () {
+		traderaPlus.upgrade.init();
 		traderaPlus.observer.init();
-		traderaPlus.log( 'traderaPlus inited' );
+		traderaPlus.log( 'inited' );
 	}
 };
 

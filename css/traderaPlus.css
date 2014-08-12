@@ -149,6 +149,14 @@
 }
 
 
+
+.traderaPlus-summary {
+    display: block;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+
 /*	Dialog	*/
 #traderPlus-dialog {
 	position: absolute;

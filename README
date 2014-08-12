@@ -5,12 +5,13 @@ A Chrome extension for tradera.com that will give you the following features:
 	- block sellers ( never see the cheap gadgets from the same seller spamming the whole products page again )
 	- add personal notes to auctions ( put a reminder about real price, special features, so you can quickly evaluate your max price )
 
-This extension stores all you settings and data on the client side ( in your browser ). Neither tradera, nor the developer know what you're doing. All info is private. This also means that data is only available in the browser where you save them, independantly of your tradera account.
+This extension stores all you settings and data on the client side ( in your browser ). Neither Tradera nor the developer know what you're doing. All info is private. This also means that data is only available in the browser where you save them, independently of your Tradera account.
 
 Usage:
 A small dropdown will appear when you hover an item on search result or category pages. Click on it to view your option.
 
 Version history:
+0.8.1 - Updated extension to be compatible with Tradera's 2014 new markup / navigation
 0.8.0.1 - converting to manifest version 2
 0.8 - added option to switch between hiding or fading out blocked products / sellers
 0.7 - first release
@@ -21,4 +22,4 @@ github: https://github.com/suhajdab/TraderaPlus
 
 Balázs Suhajda @ onereason.eu
 twitter: suhajdab
-2011-12-03
+2014-08-12

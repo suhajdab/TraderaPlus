@@ -1,5 +1,5 @@
 traderaPlus.items = ( function( tp ) {
-	var data;
+	var data, blockedCount = 0;
 	
 	var controller = 'items',
 		idAttr = 'data-item-id',
@@ -26,7 +26,10 @@ traderaPlus.items = ( function( tp ) {
 		
 		data.push( id );
 		addClass( cont, tp.prefix + blockedClass );
+		blockedCount ++;
 		save();
+
+		tp.summary.update();
 	}
 
 	function unblock( cont ) {
@@ -37,6 +40,9 @@ traderaPlus.items = ( function( tp ) {
 			data.splice( i, 1 );
 			save();
 			removeClass( cont, tp.prefix + blockedClass );
+			blockedCount --;
+
+			tp.summary.update();
 		}
 	}
 	
@@ -45,10 +51,15 @@ traderaPlus.items = ( function( tp ) {
 	}
 
 	function render() {
-		qsa( itemSelector ).forEach( function ( el ) {
+        blockedCount = 0;
+		qsa( tp.itemSelector ).forEach( function ( el ) {
 			id = getItemId( el );
-			if ( id && data.indexOf( name ) !== -1 ) addClass( el, tp.prefix + blockedClass );
+			if ( id && data.indexOf( id ) !== -1 ) {
+                addClass( el, tp.prefix + blockedClass );
+                blockedCount ++;
+            }
 		});
+		tp.summary.update();
 	}
 	
 	function handleDropdownClick() {
@@ -58,6 +69,8 @@ traderaPlus.items = ( function( tp ) {
 	}
 	
 	return {
-		init: init
-	}
+		init: init,
+		getBlockedCount: function () { return blockedCount; }
+	};
+
 })( traderaPlus );

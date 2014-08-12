@@ -24,7 +24,8 @@
 		"js/traderaPlus.items.js",
 		"js/traderaPlus.notes.js",
 		"js/traderaPlus.observer.js",
-		"js/traderaPlus.sellers.js"
+		"js/traderaPlus.sellers.js",
+		"js/traderaPlus.summary.js"
 	],
 
 	"content_scripts": [{
@@ -42,7 +43,8 @@
 			"js/traderaPlus.items.js",
 			"js/traderaPlus.notes.js",
 			"js/traderaPlus.observer.js",
-			"js/traderaPlus.sellers.js"
+			"js/traderaPlus.sellers.js",
+			"js/traderaPlus.summary.js"
 		],
 		"run_at": "document_end"
 	}]

@@ -13,7 +13,6 @@ traderaPlus.notes = ( function( tp ) {
 	
 	function init () {
 		prefix = tp.prefix;
-		itemSelector = tp.itemSelector;
 		load();
 		renderNotes();
 		attachListeners();
@@ -65,7 +64,7 @@ traderaPlus.notes = ( function( tp ) {
 			var that = this,
 				ta = this.cont.querySelector( 'textarea' );
 			
-			this.lh = parseInt( getComputedStyle( ta, null).lineHeight, 10 );
+			this.lh = parseInt( getComputedStyle( ta, null ).lineHeight, 10 );
 				
 			if ( data[ this.id ] ) {
 				ta.value = data[ this.id ];
@@ -108,7 +107,7 @@ traderaPlus.notes = ( function( tp ) {
 	function renderNotes() {
 		tp.observer.pause();
 
-		var els = document.querySelectorAll( itemSelector );
+		var els = document.querySelectorAll( tp.itemSelector );
 		for ( var i = 0, el, id; el = els[ i ]; i++ ) {
 			id = getItemId( el );
 			if ( data[ id ] ) {

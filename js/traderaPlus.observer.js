@@ -13,7 +13,7 @@ traderaPlus.observer = ( function ( tp ) {
 		observer = new MutationObserver(debounce( onMutation, 250 ));
 		observe();
 
-		tp.log( 'traderaPlus.observer inited' );
+		tp.log( 'observer inited' );
 	}
 
 	function onMutation( mutations, observer ) {
@@ -24,10 +24,12 @@ traderaPlus.observer = ( function ( tp ) {
 
 	function pause () {
 		observer.disconnect();
+		tp.log( 'observer paused' );
 	}
 
 	function observe () {
 		observer.observe( document, options );
+		tp.log( 'observer resumed' );
 	}
 
 	return {
