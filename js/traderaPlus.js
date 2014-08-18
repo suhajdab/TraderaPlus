@@ -2,9 +2,9 @@ var traderaPlus = {
 
 	prefix : 'traderaPlus-',
 	itemSelector : '.card-list .item-card',
-	version : "0.8.1",
+	version : "0.8.2",
 	href : '',
-	debug : true,
+	debug : false,
 
 	log : function ( msg ) {
 		if ( traderaPlus.debug ) console.log( 'traderaPlus: ', msg );
