@@ -38,6 +38,4 @@ var traderaPlus = {
 	}
 };
 
-if ( qs( traderaPlus.itemSelector ) ) {
-	window.addEventListener( 'load', traderaPlus.init, false );
-}
+traderaPlus.init();
