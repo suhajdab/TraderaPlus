@@ -17,8 +17,12 @@ traderaPlus.dropdown = ( function ( tp ) {
 	};
 	
 	function init() {
+		tp.observer.pause();
+
 		// add markup & classes to page
 		qsa( tp.itemSelector ).forEach( renderDropdown );
+
+		tp.observer.resume();
 	}
 	
 	function handleDropdownClick( e ) {
@@ -41,8 +45,6 @@ traderaPlus.dropdown = ( function ( tp ) {
 		var dropdownClass = tp.prefix + 'dropdown';
 		if ( qs( '.' + dropdownClass, el )) return;
 
-		tp.observer.pause();
-
 		var dropdown = document.createElement( 'nav' );
 		dropdown.className = dropdownClass
 		dropdown.dataset.fn = 'dropdown';
@@ -50,8 +52,6 @@ traderaPlus.dropdown = ( function ( tp ) {
 		dropdown.title = 'Tradera+';
 		dropdown.addEventListener( 'click', handleDropdownClick, false );
 		qs( '.item-card-body', el ).appendChild( dropdown );
-
-		tp.observer.resume();
 	}
 
 	return {

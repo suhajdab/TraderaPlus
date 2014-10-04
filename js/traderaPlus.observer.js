@@ -24,12 +24,12 @@ traderaPlus.observer = ( function ( tp ) {
 
 	function pause () {
 		observer.disconnect();
-		tp.log( 'observer paused' );
+		tp.log( 'observer stopped' );
 	}
 
 	function observe () {
 		observer.observe( document, options );
-		tp.log( 'observer resumed' );
+		tp.log( 'observer started' );
 	}
 
 	return {
