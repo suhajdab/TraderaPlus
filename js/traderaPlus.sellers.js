@@ -49,18 +49,19 @@ traderaPlus.sellers = ( function( tp ) {
 	function render () {
         blockedCount = 0;
 		qsa( '.' + tp.prefix + blockedClass ).forEach( function ( el ) {
-			removeClass( el, tp.prefix + blockedClass );
+			el.classList.remove( tp.prefix + blockedClass );
 		});
 		
 		qsa( tp.itemSelector ).forEach( function ( el ) {
 			var name = getSeller( el );
 			if ( name && data.indexOf( name ) !== -1 ) {
-                addClass( el, tp.prefix + blockedClass );
+				el.classList.add( tp.prefix + blockedClass );
                 blockedCount ++;
             }
 		});
 
 		tp.summary.update();
+		tp.log( 'items blocked by seller: ' + blockedCount );
 	}
 	
 	function handleDropdownClick () {
