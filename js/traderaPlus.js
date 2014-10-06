@@ -2,12 +2,11 @@ var traderaPlus = {
 
 	prefix : 'traderaPlus-',
 	itemSelector : '.card-list .item-card',
-	version : "0.8.2",
+	version : "0.8.2.1",
 	href : '',
-	debug : false,
 
 	log : function ( msg ) {
-		if ( traderaPlus.debug ) console.log( 'traderaPlus: ', msg );
+		if ( !!localStorage.getItem( traderaPlus.prefix + 'debug' ) ) console.log( 'traderaPlus: ', msg );
 	},
 
 	load : function ( key ) {

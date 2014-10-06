@@ -11,6 +11,7 @@ Usage:
 A small dropdown will appear when you hover an item on search result or category pages. Click on it to view your option.
 
 Version history:
+0.8.2.1 - Minor fixes
 0.8.2 - Updated extension to be compatible with Tradera's 2014 new markup / navigation
 0.8.0.1 - converting to manifest version 2
 0.8 - added option to switch between hiding or fading out blocked products / sellers
