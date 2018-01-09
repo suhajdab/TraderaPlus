@@ -27,6 +27,7 @@ traderaPlus.options = ( function ( tp ) {
 		data.blockMode = data.blockMode == 'fade' ? 'hide' : 'fade';
 		setBlockMode();
 		tp.save( controller, data );
+		_gaq && _gaq.push(['_trackEvent', data.blockMode + 'blocked', 'clicked']);
 	}
 
 	function setBlockMode() {

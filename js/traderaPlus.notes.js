@@ -122,6 +122,7 @@ traderaPlus.notes = ( function( tp ) {
 		var cont = parentByClass( this, 'item-card' );
 		if ( cont.className.match( prefix + hasNoteClass ) ) cont.note.delete();
 		else cont.note = new Note( cont, true );
+		_gaq && _gaq.push(['_trackEvent', 'add note', 'clicked']);
 	}
 	
 	return {
