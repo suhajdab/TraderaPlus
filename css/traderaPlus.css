@@ -7,11 +7,12 @@
 	position: absolute;
 	display: block;
 	/*background-image: -webkit-linear-gradient(#fee56e, #ffdc42);*/
-	background-color: rgba( 255, 255, 255, 0.9 );
+	background-color: #fff;
 	border: 1px solid #cfd4d9;
 	border-radius: 4px;
 	box-sizing: border-box;
 	cursor: pointer;
+	font-size: 0.8em;
 	/*color: #cfd4d9;*/
 	opacity: 0.7;
 	overflow: hidden;
@@ -21,38 +22,38 @@
 }
 
 .layout-grid .traderaPlus-dropdown {
-	left: 14px;
-	top: 14px;
-	width: 34px;
-	height: 34px;
+	right: 1rem;
+	top: 4rem;
+	width: 28px;
+	height: 28px;
 }
 
 .layout-list .traderaPlus-dropdown {
 	top: -6px;
 	right: 0;
-	width: 34px;
+	width: 28px;
 	height: 26px;
 }
 
 .traderaPlus-dropdown::after {
 	content: '';
 	position: absolute;
-	width: 0; 
+	width: 0;
 	height: 0;
-	border-top: 6px solid #ffdc42;
+	border-top: 6px solid #cfd4d9;
 	border-left: 6px solid transparent;
 	border-right: 6px solid transparent;
 }
 
 
 .layout-grid .traderaPlus-dropdown:after {
-	top: 15px;
-	left: 9px;
+	top: 10px;
+	left: 7px;
 }
 
 .layout-list .traderaPlus-dropdown:after {
 	top: 10px;
-	left: 9px;
+	left: 7px;
 }
 
 .card-list .item-card:hover .traderaPlus-dropdown:hover {
@@ -87,7 +88,7 @@
 	position: absolute;
 	top: 3px;
 	right: 8px;
-	content: "✔";
+	content: "✓";
 }
 
 .traderaPlus-dropdown a:hover {
@@ -97,11 +98,12 @@
 }
 
 .traderaPlus-dropdown[data-open="true"] {
-	height: 86px;
+	height: 89px;
 	width: 145px;
 	padding: 0;
-	background-image: -webkit-linear-gradient(#fee56e, #ffdc42);
-	box-shadow: 0 2px 3px rgba(0,0,0,0.25);
+	background: #f4f5f4;
+	border-radius: 1px;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.5);
 	line-height: 15px;
 	/*opacity: 1;*/
 	z-index: 100;
@@ -114,6 +116,11 @@
 
 .traderaPlus-dropdown[data-open="true"] a {
 	display: block;
+	border-top: 1px solid #cfd4d9;
+}
+
+.traderaPlus-dropdown[data-open="true"] a:first-child {
+	border-top: none;
 }
 
 /*	Note	*/
@@ -136,7 +143,7 @@
 	border: none;
 	box-shadow: none;
 	font-family: sans-serif;
-	font-size: 1em;
+	font-size: 0.8em;
 	line-height: 14px;
 	outline: none;
 	overflow: hidden;
@@ -146,6 +153,7 @@
 
 .traderaPlus-note textarea::-webkit-input-placeholder {
 	color: #666;
+	font-size: 0.8em;
 }
 
 
@@ -153,7 +161,6 @@
 .traderaPlus-summary {
     display: block;
     font-size: 1rem;
-    font-weight: bold;
 }
 
 
@@ -206,5 +213,3 @@
 .traderaPlus-hideblocked .layout-grid li.item-card {
 	padding-left: 1%;
 }
-
-
