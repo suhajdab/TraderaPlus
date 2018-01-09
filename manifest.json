@@ -1,12 +1,16 @@
 {
 	"manifest_version": 2,
 	"name": "Tradera+",
-	"version": "0.8.2.1",
+	"version": "0.8.2.2",
 	"description": "Allows you to block items, sellers from appearing in search results, and to add personal notes to items on tradera.com",
+	"icons": {
+		"128": "icon.png"
+	},
 
 	"permissions": [
 		"webRequest",
-		"*://*.tradera.com/"
+		"storage",
+		"https://*.tradera.com/"
 	],
 
 	"content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
@@ -29,7 +33,7 @@
 	],
 
 	"content_scripts": [{
-		"matches": ["http://*.tradera.com/*"],
+		"matches": ["https://*.tradera.com/*"],
 		"css": ["css/traderaPlus.css"],
 		"js": [
 			"js/utils.js",
