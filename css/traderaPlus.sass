@@ -1,0 +1,244 @@
+.card-list
+	.item-card
+		position: relative
+
+
+/* DROPDOWN */
+
+.traderaPlus-dropdown
+	display: block
+	box-sizing: border-box
+
+	background-color: #fff
+	border: 1px solid #cfd4d9
+	border-radius: 3px
+	cursor: pointer
+	line-height: 2.7rem
+	font-size: 0.8em
+	user-select: none
+	transition-property: box-shadow, opacity
+	transition-duration: 250ms
+	transition-timing-function: ease-in-out
+
+	i
+		display: block
+		height: 100%
+		width: 100%
+
+		box-sizing: border-box
+		color: #cfd4d9
+		font-size: 3.6rem
+		font-style: normal
+		line-height: 2.1rem
+		opacity: 0.7
+		text-align: center
+		transform: rotate(0deg)
+		transition-property: transform, line-height
+		transition-duration: 250ms
+		transition-timing-function: ease-in-out
+
+		&:hover
+			opacity: 1
+
+	div
+		pointer-events: none
+		position: absolute
+		height: 88px
+		width: 145px
+
+		background: #fff
+		border-radius: 1px
+		border: 1px solid #cfd4d9
+		box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 4px
+		line-height: 15px
+		opacity: 0
+		overflow: hidden
+		transition-property: left, opacity, top
+		transition-duration: 250ms
+		transition-timing-function: ease-in-out
+
+		a
+			position: relative
+			display: block
+			padding: 3px 8px
+			border-top: 1px solid #cfd4d9
+			color: #666
+			white-space: nowrap
+
+			&:first-child
+				border-top: none
+
+			&:hover
+				background: #fff
+				color: #333
+				text-decoration: underline
+
+	&[data-open="true"]
+		padding: 0
+		box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 2px
+
+		i
+			opacity: 1
+
+		div
+			pointer-events: auto
+			opacity: 1
+			z-index: 100
+
+/* layout variations */
+.layout-grid
+	.traderaPlus-dropdown
+		position: absolute
+		right: 1rem
+		top: 4rem
+		width: 2.8rem
+		height: 2.8rem
+		opacity: 0.7
+
+		i
+			opacity: 1
+
+		div
+			right: 0
+			top: 2.5rem
+
+		&:hover
+			opacity: 1
+
+		&[data-open="true"]
+			opacity: 1
+			
+			i
+				line-height: 2.5rem
+
+			div
+				top: 3.1rem
+
+
+.layout-list
+	.traderaPlus-dropdown
+		position: relative
+		float: left
+		width: 2.8rem
+		height: 2.8rem
+		margin-left: 0.3em
+
+		div
+			bottom: -1px
+			left: 2.5rem
+
+		&[data-open="true"]
+			i
+				transform: rotate(-90deg)
+			div
+				left: 3.1rem
+
+
+@media (min-width: 624px)
+	.layout-list
+		.traderaPlus-dropdown
+			width: 3.3rem
+			height: 3.3rem
+
+			div
+				left: 3.0rem
+
+			i
+				line-height: 2.8rem
+
+			&[data-open="true"]
+				div
+					left: 3.6rem
+
+
+/* menu text alternatives */
+.traderaPlus-dropdown a:before
+	content: attr(data-label)
+
+.traderaPlus-blockedItem .traderaPlus-dropdown a[data-controller="items"]::before
+	content: attr(data-altlabel)
+
+.traderaPlus-blockedSeller .traderaPlus-dropdown a[data-controller="sellers"]::before
+	content: attr(data-altlabel)
+
+.traderaPlus-hasNote .traderaPlus-dropdown a[data-controller="notes"]::before
+	content: attr(data-altlabel)
+
+.traderaPlus-fadeblocked a[data-controller="options"]::after
+	position: absolute
+	top: 3px
+	right: 8px
+	content: "✓"
+
+
+
+/*	NOTES	*/
+
+.traderaPlus-note
+	width: auto
+	padding: 5px 8px
+	margin: 10px 0 0 15px
+	background-image: -webkit-linear-gradient(#fee56e, #ffdc42)
+	border: 1px solid #ccc
+	border-radius: 3px
+	box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2)
+
+	textarea
+		width: 100%
+		min-height: 39px
+		margin: 0
+		padding: 0
+		background: transparent
+		border: none
+		box-shadow: none
+		font-family: sans-serif
+		font-size: 0.8em
+		line-height: 14px
+		outline: none
+		overflow: hidden
+		resize: vertical
+		-webkit-appearance: none
+
+		&::-webkit-input-placeholder
+			color: #666
+			font-size: 0.8em
+
+
+/* SUMMARY - blocks atop the page */
+
+.traderaPlus-summary
+	display: block
+	font-size: 1rem
+
+
+/*	Dialog	*/
+#traderPlus-dialog
+	position: absolute
+	top: -10%
+	left: 50%
+	width: 250px
+	margin: -125px
+	transition: top 200ms ease-in-out
+
+	&show
+		top: 25%
+
+
+/*	BLOCKED ITEMS	*/
+
+.traderaPlus-fadeblocked .traderaPlus-blockedItem, .traderaPlus-fadeblocked .traderaPlus-blockedSeller
+	opacity: 0.25
+
+
+.traderaPlus-fadeblocked .traderaPlus-blockedItem:hover, .traderaPlus-fadeblocked .traderaPlus-blockedSeller:hover
+	opacity: 0.75
+
+
+.traderaPlus-hideblocked .traderaPlus-blockedItem, .traderaPlus-hideblocked .traderaPlus-blockedSeller
+	display: none
+
+
+/* Overwriting tradera layour rules to accommodate for hidden items */
+
+.traderaPlus-hideblocked .layout-grid li.item-card
+	padding-left: 1%

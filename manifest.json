@@ -16,7 +16,7 @@
 	"content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
 
 	"web_accessible_resources": [
-		"css/traderaPlus.css",
+		"css/traderaPlus.min.css",
 		"js/utils.js",
 		"js/tmpl.js",
 		"data/sv.js",
@@ -34,7 +34,7 @@
 
 	"content_scripts": [{
 		"matches": ["https://*.tradera.com/*"],
-		"css": ["css/traderaPlus.css"],
+		"css": ["css/traderaPlus.min.css"],
 		"js": [
 			"js/utils.js",
 			"js/tmpl.js",
