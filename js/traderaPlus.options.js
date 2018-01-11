@@ -37,7 +37,7 @@ traderaPlus.options = ( function ( tp ) {
 	}
 
 	var defaults = {
-		blockMode: 'fade' // fade or hide
+		blockMode: 'hide' // fade or hide
 	};
 
 	return {

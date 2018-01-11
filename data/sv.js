@@ -9,7 +9,7 @@ var traderaPlusStrings = {
 	"unblockSeller": "Avblockera säljare",
 	"showOptions": "Visa inställningarna",
 	"dropdownGuide": "För att blockera säljare eller objekt, eller lägga till en personlig kommentar, klicka bara den lilla gula triangeln.",
-	"option_hideBlocked": "Dölj alla blockerade",
+	"option_hideBlocked": "Visa blockerade",
 	"clearalert": "Tradera+ förändring!\n\nPå grund av en stor förändring på tradera.com, Tradera+ extension behövs en större uppgradering och därmed har tidigare blockerade objekt / säljare tagits bort. Ursäkta.",
 	"blockedProduct": "en produkt",
 	"blockedProducts": "{=x} produkter",
