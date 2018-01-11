@@ -3,3 +3,7 @@ TraderaPlus.zip
 *.zip
 .idea
 css/traderaPlus.min.css
+
+*.pem
+
+*.crx
